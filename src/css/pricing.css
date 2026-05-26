@@ -1,4 +1,4 @@
-/* ── Блок 6: Оффер ──────────────────────────────────────── */
+/* ── Блок 6: Bespoke Service (Оффер) ───────────────────── */
 .pricing {
   background-color: var(--color-dark);
 }
@@ -7,170 +7,84 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-10);
+  gap: var(--space-8);
 }
 
-.pricing-header {
-  text-align: center;
-  max-width: 580px;
-}
-
-.pricing-header h2 {
-  color: var(--color-text-white);
-  margin-bottom: var(--space-4);
-}
-
-.pricing-header .section-label {
-  color: rgba(200, 169, 110, 0.65);
-}
-
-/* ── Pricing Card ────────────────────────────────────────── */
-.pricing-card {
+/* ── Bespoke Content Block ───────────────────────────────── */
+.bespoke-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-8);
+  max-width: 800px;
   width: 100%;
-  max-width: 680px;
-  background: #161616;
-  border: 1px solid rgba(200, 169, 110, 0.18);
-  padding: var(--space-9) var(--space-10);
+  text-align: center;
+}
+
+/* ── Grand Heading ───────────────────────────────────────── */
+.bespoke-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-light);
+  color: var(--color-text-white);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+}
+
+/* ── Gold Hairline Divider ───────────────────────────────── */
+.bespoke-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-accent);
+  flex-shrink: 0;
+}
+
+/* ── Services Line ───────────────────────────────────────── */
+.bespoke-services {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
-  position: relative;
-  overflow: hidden;
-}
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
 
-/* Hover lift */
-.pricing-card {
-  transition:
-    transform    var(--transition),
-    border-color var(--transition),
-    box-shadow   var(--transition);
-}
-
-.pricing-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(200, 169, 110, 0.36);
-  box-shadow:
-    0 24px 64px rgba(0, 0, 0, 0.32),
-    0 0  48px rgba(200, 169, 110, 0.06);
-}
-
-/* Top accent line */
-.pricing-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, var(--color-accent), transparent);
-}
-
-/* Subtle background glow */
-.pricing-card::after {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -20%;
-  width: 60%;
-  height: 80%;
-  background: radial-gradient(ellipse, rgba(200, 169, 110, 0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.pricing-card-header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.pricing-plan-name {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-light);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.40);
+}
+
+.bespoke-dot {
   color: var(--color-accent);
-}
-
-.pricing-plan-title {
-  font-family: var(--font-display);
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-semibold);
-  color: var(--color-text-white);
-  letter-spacing: var(--ls-tight);
-  line-height: var(--lh-snug);
-}
-
-/* ── Included List ───────────────────────────────────────── */
-.pricing-includes {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding-block: var(--space-4);
-  border-block: 1px solid rgba(255, 255, 255, 0.06);
-}
-
-.pricing-include-item {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-4);
-}
-
-.pricing-include-item::before {
-  content: '—';
-  color: var(--color-accent);
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  flex-shrink: 0;
-  margin-top: 1px;
-}
-
-.pricing-include-item span {
-  font-size: var(--fs-sm);
-  line-height: var(--lh-normal);
-  color: rgba(255, 255, 255, 0.60);
-}
-
-/* ── Price ───────────────────────────────────────────────── */
-.pricing-price {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.pricing-price-label {
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.30);
-}
-
-.pricing-price-value {
-  font-family: var(--font-display);
-  font-size: var(--fs-3xl);
-  font-weight: var(--fw-semibold);
-  color: var(--color-text-white);
-  letter-spacing: var(--ls-tight);
+  font-size: 0.6em;
   line-height: 1;
+  opacity: 0.7;
 }
 
-/* ── CTA ─────────────────────────────────────────────────── */
-.pricing-cta {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.pricing-disclaimer {
-  font-size: var(--fs-xs);
-  color: rgba(255, 255, 255, 0.25);
-  text-align: center;
+/* ── Disclaimer Note ─────────────────────────────────────── */
+.bespoke-note {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-light);
+  color: rgba(255, 255, 255, 0.30);
+  line-height: var(--lh-loose);
+  max-width: 460px;
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .pricing-card {
-    padding: var(--space-7) var(--space-6);
+@media (max-width: 768px) {
+  .bespoke-title {
+    font-size: var(--fs-3xl);
+  }
+
+  .bespoke-content {
+    gap: var(--space-7);
+  }
+}
+
+@media (max-width: 480px) {
+  .bespoke-title {
+    font-size: var(--fs-2xl);
   }
 }

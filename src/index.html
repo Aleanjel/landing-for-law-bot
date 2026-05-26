@@ -209,66 +209,31 @@
       </div>
     </section>
 
-    <!-- ─── Блок 4: Заперечення ────────────────────────────── -->
-    <section class="objections" id="objections" aria-labelledby="objections-title">
+    <!-- ─── Блок 4: Versus ───────────────────────────────── -->
+    <section class="objections" id="objections" aria-label="Порівняння сценаріїв">
       <div class="container">
 
-        <div class="objections-header reveal">
-          <span class="section-label">Порівняння</span>
-          <h2 id="objections-title">У мене є сайт і номер телефону. Навіщо мені бот?</h2>
-        </div>
+        <span class="section-label reveal">Порівняння</span>
 
-        <div class="comparison-grid">
+        <div class="versus-grid" role="presentation">
 
-          <div class="comparison-col comparison-col--without reveal reveal-d1">
-            <span class="comparison-col-label">Звичайний сценарій</span>
-            <div class="comparison-steps">
-              <div class="comparison-step">
-                <span class="comparison-step-title">21:00 — Клієнт зайшов на сайт</span>
-                <span class="comparison-step-text">Знайшов ваші контакти, готовий до дії.</span>
-              </div>
-              <div class="comparison-step">
-                <span class="comparison-step-title">Подзвонив</span>
-                <span class="comparison-step-text">Ваш телефон не відповідає. Зайнятий, відпочиваєте.</span>
-              </div>
-              <div class="comparison-step">
-                <span class="comparison-step-title">Ніхто не взяв слухавку</span>
-                <span class="comparison-step-text">Клієнт почекав і перейшов до наступного в Google.</span>
-              </div>
-            </div>
-            <div class="comparison-result">
-              <p class="comparison-result-label">Результат</p>
-              <p class="comparison-result-value">0&nbsp;грн</p>
-            </div>
+          <div class="versus-col versus-col--without reveal">
+            <span class="versus-label">Без асистента</span>
+            <p class="versus-result">Втрачений лід<br>о&nbsp;21:00</p>
           </div>
 
-          <div class="comparison-col comparison-col--with reveal reveal-d2">
-            <span class="comparison-col-label">Сценарій з ботом</span>
-            <div class="comparison-steps">
-              <div class="comparison-step">
-                <span class="comparison-step-title">21:00 — Клієнт перейшов у бот</span>
-                <span class="comparison-step-text">Миттєва відповідь. Жодного очікування.</span>
-              </div>
-              <div class="comparison-step">
-                <span class="comparison-step-title">Отримав первинну ШІ-консультацію</span>
-                <span class="comparison-step-text">Відчув вашу експертність, побачив конкретну допомогу.</span>
-              </div>
-              <div class="comparison-step">
-                <span class="comparison-step-title">Записався на зустріч на завтра</span>
-                <span class="comparison-step-text">Уся інформація вже у вашій таблиці. Ви побачите зранку.</span>
-              </div>
-            </div>
-            <div class="comparison-result">
-              <p class="comparison-result-label">Результат</p>
-              <p class="comparison-result-value">Новий клієнт</p>
-            </div>
+          <div class="versus-divider" aria-hidden="true"></div>
+
+          <div class="versus-col versus-col--with reveal reveal-d1">
+            <span class="versus-label">З ШІ-асистентом</span>
+            <p class="versus-result">Готова зустріч<br>на&nbsp;09:00</p>
           </div>
 
         </div>
 
-        <div class="objections-conclusion reveal reveal-d3" role="note">
-          <p>Лише одна збережена консультація на місяць повністю окупає вартість підписки на&nbsp;бота.</p>
-        </div>
+        <p class="objections-tagline reveal reveal-d2">
+          Одна збережена консультація окупає місяць роботи бота.
+        </p>
 
       </div>
     </section>
@@ -318,40 +283,34 @@
       </div>
     </section>
 
-    <!-- ─── Блок 6: Оффер ──────────────────────────────────── -->
+    <!-- ─── Блок 6: Bespoke ──────────────────────────────── -->
     <section class="pricing" id="pricing" aria-labelledby="pricing-title">
       <div class="container">
 
-        <div class="pricing-header reveal">
-          <span class="section-label section-label--light">Інвестиція</span>
-          <h2 id="pricing-title">Інвестиція у ваш час та нових клієнтів</h2>
-        </div>
+        <span class="section-label section-label--light reveal">Bespoke</span>
 
-        <div class="pricing-card reveal reveal-d1" role="article" aria-label="Тарифний план">
-          <div class="pricing-card-header">
-            <span class="pricing-plan-name">Підписка + Повний технічний супровід</span>
-            <h3 class="pricing-plan-title">Все, що потрібно для роботи цифрового асистента</h3>
+        <div class="bespoke-content reveal reveal-d1">
+          <h2 class="bespoke-title" id="pricing-title">
+            Індивідуальна архітектура<br>під вашу практику
+          </h2>
+
+          <div class="bespoke-divider" aria-hidden="true"></div>
+
+          <div class="bespoke-services" aria-label="Що входить у сервіс">
+            <span>Логіка</span>
+            <span class="bespoke-dot" aria-hidden="true">•</span>
+            <span>ШІ&#8209;інтеграція</span>
+            <span class="bespoke-dot" aria-hidden="true">•</span>
+            <span>Технічний супровід</span>
           </div>
 
-          <ul class="pricing-includes" aria-label="Що входить у план">
-            <li class="pricing-include-item"><span>Розробка індивідуальної структури та логіки бота</span></li>
-            <li class="pricing-include-item"><span>Інтеграція штучного інтелекту для первинних консультацій</span></li>
-            <li class="pricing-include-item"><span>Підключення бази даних (Google Sheets)</span></li>
-            <li class="pricing-include-item"><span>Цілодобова підтримка серверів та безперебійна робота</span></li>
-            <li class="pricing-include-item"><span>Внесення поточних правок та вдосконалень</span></li>
-          </ul>
+          <p class="bespoke-note">
+            Вартість розраховується індивідуально після аудиту ваших бізнес-процесів.
+          </p>
 
-          <div class="pricing-price">
-            <span class="pricing-price-label">Вартість</span>
-            <p class="pricing-price-value">Індивідуальний прорахунок</p>
-          </div>
-
-          <div class="pricing-cta">
-            <a href="#contact" class="btn btn-primary btn-block">
-              Отримати розрахунок вартості
-            </a>
-            <p class="pricing-disclaimer">Безкоштовна консультація. Без прихованих платежів.</p>
-          </div>
+          <a href="#contact" class="btn btn-primary">
+            Обговорити проєкт
+          </a>
         </div>
 
       </div>

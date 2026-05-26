@@ -120,6 +120,85 @@ src/
 
 ---
 
+## Сесія: 2026-05-26 (Redesign Блоків 4 та 6)
+
+### Поточна задача
+Повна переробка верстки Блоку 4 (Заперечення) та Блоку 6 (Оффер) до преміального мінімалізму.
+
+### Ціль
+Замінити перевантажений текстом порівняльний блок на чистий versus-дизайн. Знищити class "картка тарифу" і замінити bespoke-форматом без рамок — лише гра шрифтом та відступами.
+
+### Покроковий план
+- [x] **Р1.** ПРОТОКОЛ СТАРТУ
+- [x] **Р2.** Переписати `src/css/objections.css` — versus-layout, grand typography, maximum whitespace
+- [x] **Р3.** Переписати `src/css/pricing.css` — bespoke service, без картки, тільки тип і простір
+- [x] **Р4.** Оновити Block 4 в `src/index.html` — нова структура HTML (versus-grid)
+- [x] **Р5.** Оновити Block 6 в `src/index.html` — нова структура HTML (bespoke-content)
+- [x] **Р6.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Redesign Блоків 4 та 6
+**Блок 4 (Versus):**
+- HTML: видалено 3 кроки + результати. Залишено: label + grand text per column + tagline
+- CSS: `.versus-grid` — grid 1fr auto 1fr (без рамок і фонів)
+- `.versus-result` — `var(--fs-4xl)` weight 300, ліва колонка opacity 0.45
+- `.versus-divider` — 1px vertical hairline, gradient fade top/bottom
+- `.objections-tagline` — xs body text + gold 32px hairline зверху
+- Mobile: grid → стовпці вертикально, divider horizontal
+
+**Блок 6 (Bespoke):**
+- HTML: видалено картку, список, price block. Залишено: label + h2 + divider + services line + note + CTA
+- CSS: `.bespoke-title` — `var(--fs-4xl)` weight 300, без рамок і тіней
+- `.bespoke-services` — uppercase xs, rgba(255,255,255,0.40), крапки-•-акценти
+- `.bespoke-note` — rgba(255,255,255,0.30), max-width 460px
+- Нуль border, нуль background, нуль box-shadow — тільки простір і шрифт
+
+---
+
+## Сесія: 2026-05-26 (Scroll Snap)
+
+### Поточна задача
+Впровадження Full-Screen Scroll Snapping — "один блок = один екран".
+
+### Ціль
+Кожна секція займає точно 100svh. CSS scroll-snap-type: y mandatory на html. Адаптивність через clamp() + height media query для ноутбуків. Мобільний fallback на proximity + min-height.
+
+### Архітектурні рішення
+- Контейнер snap: `html` (scroll-snap-type: y mandatory; overflow-y: scroll; height: 100svh)
+- scroll-padding-top: header-height — щоб фіксований header не перекривав контент секцій
+- Секції з контентом що не влазить у 100svh (features, objections) → min-height: 100svh; height: auto
+- @media (max-height: 860px): масштабуємо шрифти і мокап через clamp(vh)
+- @media (max-width: 768px): перемикаємо на proximity + height: auto; min-height: 100svh
+- IntersectionObserver threshold: 0.12 → 0.5 (краще спрацьовує при snap-переходах)
+
+### Покроковий план
+- [x] **С1.** Виконати ПРОТОКОЛ СТАРТУ у docs/progress.md
+- [x] **С2.** Створити `src/css/snap.css` — scroll-snap, секції 100svh, compact gap overrides, laptop/mobile media queries
+- [x] **С3.** Оновити `src/js/animations.js` — threshold 0.12→0.5, rootMargin '0px'
+- [x] **С4.** Оновити `src/index.html` — підключено snap.css між lead-form.css та animations.css
+- [x] **С5.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що реалізовано — Scroll Snap
+| Файл | Зміна |
+|---|---|
+| `snap.css` (новий) | `html`: height:100svh + overflow-y:scroll + scroll-snap-type:y mandatory + scroll-padding-top:72px |
+| `snap.css` | `main > section`: height:100svh + snap-align:start + stop:always + display:flex justify:center |
+| `snap.css` | `.hero` override: менший padding-top/bottom (clamp vh) |
+| `snap.css` | `.features, .objections`: height:auto; min-height:100svh (надлишковий контент) |
+| `snap.css` | `.site-footer`: scroll-snap-align:end |
+| `snap.css` | Compact gaps: 6 секцій × gap + pricing-card padding зменшені через clamp(vh) |
+| `snap.css` | `@media (max-height: 860px)`: fluid type scale + phone mockup height:42vh |
+| `snap.css` | `@media (max-width: 768px)`: proximity + height:auto; min-height:100svh |
+| `snap.css` | `@media (max-width: 480px)`: features/objections/approach snap вимкнено |
+| `animations.js` | threshold: 0.12 → 0.5 (краще спрацьовує при snap-фіксації) |
+| `index.html` | snap.css підключено після lead-form.css, перед animations.css |
+
+### Логіка перекриття CSS (специфічність)
+- `section` (0,0,1) ← base.css padding-block — перекривається
+- `main > section` (0,0,2) ← snap.css — перекриває base.css ✓
+- `.hero` (0,1,0) ← snap.css + hero.css — snap.css завантажується пізніше, виграє ✓
+
+---
+
 ## Сесія: 2026-05-26 (Анімації)
 
 ### Поточна задача

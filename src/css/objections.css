@@ -1,4 +1,4 @@
-/* ── Блок 4: Заперечення ────────────────────────────────── */
+/* ── Блок 4: Versus (Заперечення) ──────────────────────── */
 .objections {
   background-color: var(--color-white);
 }
@@ -6,191 +6,149 @@
 .objections .container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-10);
+  align-items: center;
+  gap: var(--space-7);
 }
 
-.objections-header {
-  text-align: center;
-  max-width: 700px;
-  margin-inline: auto;
-}
-
-.objections-header h2 {
-  color: var(--color-dark);
-  margin-bottom: 0;
-}
-
-/* Quotation marks */
-.objections-header h2::before {
-  content: '\201C';
-  display: inline;
-  color: var(--color-accent);
-  opacity: 0.5;
-}
-
-.objections-header h2::after {
-  content: '\201D';
-  display: inline;
-  color: var(--color-accent);
-  opacity: 0.5;
-}
-
-/* ── Comparison Grid ─────────────────────────────────────── */
-.comparison-grid {
+/* ── Versus Grid ─────────────────────────────────────────── */
+/* Три колонки: [ліва] [вертикальна лінія] [права]          */
+.versus-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-5);
-  align-items: stretch;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  width: 100%;
 }
 
-/* Column shared */
-.comparison-col {
-  padding: var(--space-8);
+/* ── Columns ─────────────────────────────────────────────── */
+.versus-col {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-8);
 }
 
-/* Without bot — muted */
-.comparison-col--without {
-  background: #F4F4F2;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+.versus-col--without {
+  text-align: right;
+  align-items: flex-end;
 }
 
-.comparison-col--without .comparison-col-label {
-  color: var(--color-text-muted);
-  border-color: rgba(0, 0, 0, 0.15);
+.versus-col--with {
+  text-align: left;
+  align-items: flex-start;
 }
 
-.comparison-col--without .comparison-step-title {
-  color: var(--color-text-secondary);
-}
-
-.comparison-col--without .comparison-step-text {
-  color: var(--color-text-muted);
-}
-
-/* With bot — premium dark */
-.comparison-col--with {
-  background: var(--color-dark);
-  border: 1px solid rgba(200, 169, 110, 0.15);
-}
-
-.comparison-col--with .comparison-col-label {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
-.comparison-col--with .comparison-step-title {
-  color: var(--color-text-white);
-}
-
-.comparison-col--with .comparison-step-text {
-  color: rgba(255, 255, 255, 0.50);
-}
-
-/* Column header label */
-.comparison-col-label {
+/* ── Label (tiny uppercase) ──────────────────────────────── */
+.versus-label {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
   font-weight: var(--fw-medium);
   letter-spacing: var(--ls-wider);
   text-transform: uppercase;
-  padding-bottom: var(--space-4);
-  border-bottom: 1px solid;
 }
 
-/* Steps */
-.comparison-steps {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-  flex: 1;
-}
-
-.comparison-step {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.comparison-step-title {
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
-}
-
-.comparison-step-text {
-  font-size: var(--fs-sm);
-  line-height: var(--lh-normal);
-}
-
-/* Result line */
-.comparison-result {
-  margin-top: auto;
-  padding-top: var(--space-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.comparison-col--without .comparison-result {
-  border-top-color: rgba(0, 0, 0, 0.08);
-}
-
-.comparison-result-label {
-  font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  letter-spacing: var(--ls-wide);
-  text-transform: uppercase;
+.versus-col--without .versus-label {
   color: var(--color-text-muted);
-  margin-bottom: var(--space-2);
 }
 
-.comparison-col--with .comparison-result-label {
-  color: rgba(255, 255, 255, 0.35);
-}
-
-.comparison-result-value {
-  font-family: var(--font-display);
-  font-size: var(--fs-2xl);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-tight);
-}
-
-.comparison-col--without .comparison-result-value {
-  color: #C0392B;
-}
-
-.comparison-col--with .comparison-result-value {
+.versus-col--with .versus-label {
   color: var(--color-accent);
 }
 
-/* ── Conclusion ──────────────────────────────────────────── */
-.objections-conclusion {
-  text-align: center;
-  max-width: 700px;
-  margin-inline: auto;
-  padding: var(--space-8);
-  background: var(--color-light);
-  border-left: 3px solid var(--color-accent);
-  text-align: left;
+/* ── Grand Result Typography ─────────────────────────────── */
+.versus-result {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
 }
 
-.objections-conclusion p {
-  font-family: var(--font-display);
-  font-size: var(--fs-xl);
-  font-weight: var(--fw-semibold);
-  line-height: var(--lh-snug);
+.versus-col--without .versus-result {
+  color: var(--color-text-muted);
+  opacity: 0.45;
+}
+
+.versus-col--with .versus-result {
   color: var(--color-dark);
-  letter-spacing: var(--ls-tight);
+}
+
+/* ── Central Divider ─────────────────────────────────────── */
+.versus-divider {
+  width: 1px;
+  height: clamp(80px, 14vw, 160px);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 0, 0, 0.12),
+    transparent
+  );
+  flex-shrink: 0;
+}
+
+/* ── Bottom Tagline ──────────────────────────────────────── */
+.objections-tagline {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-light);
+  color: var(--color-text-muted);
+  letter-spacing: var(--ls-wide);
+  text-align: center;
+  max-width: 440px;
+  line-height: var(--lh-loose);
+  position: relative;
+  padding-top: var(--space-6);
+}
+
+/* Gold hairline above tagline */
+.objections-tagline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 1px;
+  background: var(--color-accent);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .comparison-grid {
+  .versus-grid {
     grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .comparison-col {
-    padding: var(--space-6);
+  .versus-col {
+    padding: var(--space-8) var(--space-4);
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .versus-col--without {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  /* Horizontal divider on mobile */
+  .versus-divider {
+    width: 40px;
+    height: 1px;
+    margin: 0 var(--space-4);
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 0, 0, 0.12),
+      transparent
+    );
+  }
+
+  .versus-result {
+    font-size: clamp(1.8rem, 8vw, 2.8rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .versus-col {
+    padding: var(--space-6) 0;
   }
 }
