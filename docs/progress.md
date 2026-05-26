@@ -398,3 +398,31 @@ src/
 | Валідація | 3 поля (name, email, contact) | 4 поля + `PHONE_RE` + `TELEGRAM_RE` |
 | Payload | `{name, email, contact}` | `{fullname, phone, email, telegram}` |
 | Маска | — | `formatPhone()` + `onPhoneInput()` + paste handler |
+
+---
+
+## Сесія: 2026-05-26 (Form Final Fix — 3 поля, чиста валідація)
+
+### Поточна задача
+Повний rebuild форми: спрощення до 3 полів (name, email, contact), усунення багів (page reload, порожні поля), CONTACT_RE для телефону/Telegram, зняття помилки при input.
+
+### Покроковий план
+- [x] **X1.** ПРОТОКОЛ СТАРТУ
+- [x] **X2.** Оновити Block 7 `src/index.html` — 3 поля: name (required), email (optional), contact (required)
+- [x] **X3.** Переписати `src/js/form.js` — чиста валідація, e.preventDefault(), clearError on input
+- [x] **X4.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Form Final Fix
+| Баг | Причина | Виправлення |
+|---|---|---|
+| Page reload при submit | JS не знаходив елементи (name mismatch) → падав до дефолту | `e.preventDefault()` — перший рядок handleSubmit |
+| Порожні поля проходили | 4 поля з новими іменами, JS шукав старі | Rebuild: 3 поля з іменами `name/email/contact` |
+| Телефон приймав текст | keydown-фільтр на окреме поле, combined field не захищено | `CONTACT_RE` на валідації submit; поле вільне для вводу @/+ |
+| Помилка не знімалась | clearError не було підключено | `input` → `clearError()` на всіх 3 полях |
+| Структура | 4 поля (fullname/phone/email/telegram) | 3 поля: name(req) + email(opt) + contact(req) |
+
+### Регекси
+| Поле | Regex | Приклади |
+|---|---|---|
+| email | `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` | name@mail.ua |
+| contact | `/^(\+\d{10,15}\|[@a-zA-Z][a-zA-Z0-9_]{4,})$/` | +380661234567, @username |

@@ -340,7 +340,6 @@
               placeholder="Коваленко Олександр Іванович"
               autocomplete="name"
               required
-              minlength="2"
             >
             <span class="form-error" data-error="fullname" role="alert" aria-live="polite"></span>
           </div>
@@ -354,15 +353,16 @@
               class="form-input"
               placeholder="+38 (0__) ___-__-__"
               autocomplete="tel"
+              inputmode="numeric"
               required
             >
             <span class="form-error" data-error="phone" role="alert" aria-live="polite"></span>
           </div>
 
-          <!-- Рядок 2: Email (col 1) + Telegram (col 2) — обидва за бажанням -->
+          <!-- Рядок 2: Email (col 1) + Telegram (col 2) — за бажанням -->
           <div class="form-group">
             <label for="field-email" class="form-label">
-              Електронна пошта <span class="form-optional">(за бажанням)</span>
+              Email <span class="form-optional">(за бажанням)</span>
             </label>
             <input
               type="email"
