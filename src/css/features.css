@@ -1,4 +1,4 @@
-/* ── Блок 3: Функціонал ─────────────────────────────────── */
+/* ── Блок 3: Функціонал (2-col grid) ────────────────────── */
 .features {
   background-color: var(--color-dark);
 }
@@ -6,7 +6,7 @@
 .features .container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-10);
+  gap: var(--space-7);
 }
 
 .features-header {
@@ -22,50 +22,51 @@
   color: rgba(200, 169, 110, 0.65);
 }
 
-/* ── Features List ───────────────────────────────────────── */
+/* ── 2-Column Grid ───────────────────────────────────────── */
 .features-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: clamp(48px, 7vw, 96px);
+  row-gap: 0;
+}
+
+/* ── Feature Item ────────────────────────────────────────── */
+.feature-item {
   display: flex;
   flex-direction: column;
-}
-
-.feature-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-7);
-  align-items: start;
-  padding-block: var(--space-8);
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
   position: relative;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
 }
 
-.feature-item:last-child {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+.feature-item:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-top-color: rgba(200, 169, 110, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
 }
 
+/* ── Serial Number ───────────────────────────────────────── */
 .feature-num {
-  font-family: var(--font-display);
-  font-size: clamp(4rem, 8vw, 6rem);
-  font-weight: var(--fw-light);
-  line-height: 1;
-  color: var(--color-text-white);
-  opacity: 0.06;
-  width: clamp(60px, 8vw, 80px);
-  text-align: right;
-  flex-shrink: 0;
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wider);
+  color: var(--color-accent);
+  opacity: 0.65;
   user-select: none;
-  letter-spacing: var(--ls-tight);
 }
 
-.feature-body {
-  padding-top: var(--space-2);
-}
-
+/* ── Title ───────────────────────────────────────────────── */
 .feature-title {
   font-family: var(--font-display);
   font-size: var(--fs-2xl);
   font-weight: var(--fw-semibold);
   color: var(--color-text-white);
-  margin-bottom: var(--space-4);
   letter-spacing: var(--ls-tight);
   line-height: var(--lh-snug);
 }
@@ -85,40 +86,20 @@
   line-height: 1.6;
 }
 
+/* ── Description ─────────────────────────────────────────── */
 .feature-text {
   font-size: var(--fs-base);
   line-height: var(--lh-loose);
-  color: rgba(255, 255, 255, 0.50);
-  max-width: 560px;
-}
-
-/* Gold accent line on hover */
-.feature-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  background: var(--color-accent);
-  transition: width var(--transition-slow);
-}
-
-.feature-item:hover::before {
-  width: 2px;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 640px) {
-  .feature-item {
+@media (max-width: 768px) {
+  .features-list {
     grid-template-columns: 1fr;
-    gap: var(--space-3);
   }
 
-  .feature-num {
-    font-size: 3rem;
-    text-align: left;
-    width: auto;
-    opacity: 0.10;
+  .feature-item {
+    padding-block: var(--space-6);
   }
 }

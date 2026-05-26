@@ -120,6 +120,32 @@ src/
 
 ---
 
+## Сесія: 2026-05-26 (Redesign Блоку 3 — 2-колонковий грід)
+
+### Поточна задача
+Перебудова Блоку 3 (Функціонал) з вертикального списку на преміальний 2-колонковий грід.
+
+### Ціль
+`features-list`: flex column → CSS Grid 2×2. Спрощена картка — тільки чистий текст, border-top hairline, Cormorant Garamond заголовок. Адаптив: <768px → 1 колонка.
+
+### Покроковий план
+- [x] **Ф1.** ПРОТОКОЛ СТАРТУ
+- [x] **Ф2.** Переписати `src/css/features.css` — grid layout + спрощена картка
+- [x] **Ф3.** Оновити Block 3 в `src/index.html` — нова структура item (без .feature-body)
+- [x] **Ф4.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Блок 3 Grid
+| | До | Після |
+|---|---|---|
+| `.features-list` | `flex column` | `grid repeat(2,1fr)`, col-gap clamp(48→96px) |
+| `.feature-item` | `grid auto+1fr` (num+body) | `flex column` (num→title→text) |
+| `.feature-num` | ghost 6rem opacity 0.06 | xs uppercase gold label 0.65 opacity |
+| hover | left gold bar 2px | `border-top-color: accent` |
+| `.feature-body` | обгортка-div | видалено |
+| mobile | `<640px → 1col` | `<768px → 1col` (ширший breakpoint)
+
+---
+
 ## Сесія: 2026-05-26 (Redesign Блоків 4 та 6)
 
 ### Поточна задача
