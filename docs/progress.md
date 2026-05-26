@@ -310,3 +310,91 @@ src/
 | Декор | divider line, dot separators | тільки border-top hairline, hover: gold |
 | Адаптив | — | desktop 3col → tablet 2col (≤900px) → mobile 1col (≤560px) |
 | Анімації | `.reveal .reveal-d1` на bespoke-content | `.reveal` + `.reveal-d1` + `.reveal-d2` на кожному item |
+
+---
+
+## Сесія: 2026-05-26 (Redesign Блоку 7 — Underlined Form)
+
+### Поточна задача
+Переробка архітектури Lead Form з box-інпутів на елітний "underlined blank" дизайн із CSS Grid-сіткою.
+
+### Ціль
+Форма-бланк: прозорі поля тільки з нижньою лінією, 2-колонковий grid (ім'я + контакт у рядок), textarea на повну ширину, кнопка вирівняна праворуч. Оновити form.js для нового тексту кнопки та поля message.
+
+### Покроковий план
+- [x] **Ф1.** ПРОТОКОЛ СТАРТУ
+- [x] **Ф2.** Переписати `src/css/lead-form.css` — underlined inputs, CSS Grid, hover/focus states
+- [x] **Ф3.** Оновити Block 7 в `src/index.html` — нова структура: `.input-group`, `.form-textarea`, `.form-submit-row`
+- [x] **Ф4.** Оновити `src/js/form.js` — новий текст кнопки + поле `message` в payload
+- [x] **Ф5.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Underlined Form Redesign
+| | До | Після |
+|---|---|---|
+| Форма-лейаут | `flex column`, max-width 520px | `CSS Grid 2×1fr`, max-width 720px |
+| Рядок 1 | Ім'я — окремо, контакт — окремо (стовпець) | Ім'я + Телефон в одному рядку (2 col) |
+| Рядок 2 | — | Textarea `message` на повну ширину (`grid-column: 1/-1`) |
+| Рядок 3 | Кнопка 100% ширина | Кнопка вирівняна праворуч |
+| Input стиль | `background: rgba(255,255,255,0.05)`, border 1px all sides | `background: transparent`, тільки `border-bottom` |
+| Focus стан | `border-color: accent` (all sides) | `border-bottom-color: accent` + placeholder opacity down |
+| `.form-field` | обгортка div | видалено → замінено на `.input-group` |
+| `form.js` idle | "Отримати консультацію" | "Отримати безкоштовний прототип" |
+| `form.js` payload | `{name, contact, source, timestamp}` | `{name, contact, message, source, timestamp}` |
+| Mobile ≤640px | max-width 100% | 1 колонка, кнопка 100% ширина |
+
+---
+
+## Сесія: 2026-05-26 (Form Rebuild v2 — 3 поля + строга типографіка)
+
+### Поточна задача
+Повна перебудова Lead Form: видалення textarea, додавання поля Email, виправлення контрасту labels, строга геометрія.
+
+### Ціль
+Три поля (name, email, contact) у чіткій сітці. Labels — uppercase, fw-600, чітко видні. Inputs — тільки border-bottom, великий gap між label і input. Кнопка "Зв'яжіться з нами" — повна ширина. JS: нова валідація email + email у payload.
+
+### Покроковий план
+- [x] **В1.** ПРОТОКОЛ СТАРТУ
+- [x] **В2.** Переписати `src/css/lead-form.css` — нові класи `.form-group`, контрастні labels, правильні відступи
+- [x] **В3.** Оновити Block 7 в `src/index.html` — 3 поля (name/email/contact), без textarea
+- [x] **В4.** Оновити `src/js/form.js` — email поле + валідація + payload + текст кнопки
+- [x] **В5.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Form Rebuild v2
+| | До | Після |
+|---|---|---|
+| Поля | name + contact + textarea | name + email + contact (без textarea) |
+| Layout | `input-group` (2 col + 1 full) | `form-group` (2 col + 1 full) |
+| Label контраст | `rgba(255,255,255,0.35)`, fw-medium | `rgba(255,255,255,0.55)`, fw-600, 11px |
+| Label-input gap | `--space-2` (8px) | `--space-3` (16px) — чітко розділені |
+| Input padding | `padding: 12px 0` | `padding: 10px 0` |
+| Border-bottom | `rgba(255,255,255,0.25)` | `rgba(255,255,255,0.20)` |
+| Кнопка | правий край, не 100% | повна ширина, центровано |
+| Кнопка текст | "Отримати безкоштовний прототип" | "Зв'яжіться з нами" |
+| JS validateForm | 2 аргументи (name, contact) | 6 аргументів через об'єкт `fields` |
+| JS payload | `{name, contact, message, ...}` | `{name, email, contact, ...}` |
+| Email regex | — | `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` |
+
+---
+
+## Сесія: 2026-05-26 (Form v3 — 4 поля, телефонна маска)
+
+### Поточна задача
+Реструктуризація форми: ПІБ + Телефон (рядок 1), Email за бажанням + Telegram за бажанням (рядок 2). Маска українського телефону. Валідація опціональних полів "якщо заповнено".
+
+### Покроковий план
+- [x] **М1.** ПРОТОКОЛ СТАРТУ
+- [x] **М2.** Оновити Block 7 в `src/index.html` — 4 поля нової структури
+- [x] **М3.** Оновити `src/css/lead-form.css` — `.form-optional` span стиль
+- [x] **М4.** Переписати `src/js/form.js` — маска телефону, нова валідація
+- [x] **М5.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Form v3
+| | До | Після |
+|---|---|---|
+| Поля | name + email + contact | fullname + phone (row1) + email + telegram (row2) |
+| Phone | text input, без маски | `type="tel"`, маска `+38 (0XX) XXX-XX-XX` |
+| Email | обов'язковий | за бажанням (валідується тільки якщо заповнено) |
+| Telegram | — | за бажанням, формат `@username` (4–32 символи) |
+| Валідація | 3 поля (name, email, contact) | 4 поля + `PHONE_RE` + `TELEGRAM_RE` |
+| Payload | `{name, email, contact}` | `{fullname, phone, email, telegram}` |
+| Маска | — | `formatPhone()` + `onPhoneInput()` + paste handler |

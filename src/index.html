@@ -329,42 +329,76 @@
 
         <form class="lead-form-wrapper reveal reveal-d2" id="lead-form" novalidate aria-label="Форма зворотного зв'язку">
 
-          <div class="form-field">
-            <label for="field-name" class="form-label">Ваше ім'я</label>
+          <!-- Рядок 1: ПІБ (col 1) + Телефон (col 2) -->
+          <div class="form-group">
+            <label for="field-fullname" class="form-label">ПІБ</label>
             <input
               type="text"
-              id="field-name"
-              name="name"
+              id="field-fullname"
+              name="fullname"
               class="form-input"
-              placeholder="Олександр Коваленко"
+              placeholder="Коваленко Олександр Іванович"
               autocomplete="name"
               required
               minlength="2"
             >
-            <span class="form-error" data-error="name" role="alert" aria-live="polite"></span>
+            <span class="form-error" data-error="fullname" role="alert" aria-live="polite"></span>
           </div>
 
-          <div class="form-field">
-            <label for="field-contact" class="form-label">Telegram або Телефон</label>
+          <div class="form-group">
+            <label for="field-phone" class="form-label">Номер телефону</label>
             <input
-              type="text"
-              id="field-contact"
-              name="contact"
+              type="tel"
+              id="field-phone"
+              name="phone"
               class="form-input"
-              placeholder="@username або +380..."
+              placeholder="+38 (0__) ___-__-__"
               autocomplete="tel"
               required
             >
-            <span class="form-error" data-error="contact" role="alert" aria-live="polite"></span>
+            <span class="form-error" data-error="phone" role="alert" aria-live="polite"></span>
           </div>
 
-          <button type="submit" class="form-submit" aria-label="Надіслати заявку на консультацію">
-            Отримати консультацію
-          </button>
+          <!-- Рядок 2: Email (col 1) + Telegram (col 2) — обидва за бажанням -->
+          <div class="form-group">
+            <label for="field-email" class="form-label">
+              Електронна пошта <span class="form-optional">(за бажанням)</span>
+            </label>
+            <input
+              type="email"
+              id="field-email"
+              name="email"
+              class="form-input"
+              placeholder="name@lawfirm.ua"
+              autocomplete="email"
+            >
+            <span class="form-error" data-error="email" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="field-telegram" class="form-label">
+              Telegram <span class="form-optional">(за бажанням)</span>
+            </label>
+            <input
+              type="text"
+              id="field-telegram"
+              name="telegram"
+              class="form-input"
+              placeholder="@username"
+              autocomplete="off"
+            >
+            <span class="form-error" data-error="telegram" role="alert" aria-live="polite"></span>
+          </div>
+
+          <!-- Рядок 3: Кнопка -->
+          <div class="form-submit-row">
+            <button type="submit" class="form-submit" aria-label="Надіслати заявку">
+              Зв'яжіться з нами
+            </button>
+          </div>
 
           <p class="form-privacy">
-            Надсилаючи форму, ви погоджуєтесь на обробку персональних даних.
-            Ваша інформація в безпеці.
+            Надсилаючи форму, ви погоджуєтесь на обробку персональних даних. Ваша інформація в безпеці.
           </p>
 
         </form>

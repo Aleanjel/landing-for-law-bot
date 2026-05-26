@@ -1,11 +1,10 @@
-/* ── Блок 7: Lead Form ──────────────────────────────────── */
+/* ── Блок 7: Lead Form ───────────────────────────────────── */
 .lead-form-section {
   background-color: var(--color-hero-bg);
   position: relative;
   overflow: hidden;
 }
 
-/* Symmetric glow to match Hero */
 .lead-form-section::before {
   content: '';
   position: absolute;
@@ -44,75 +43,109 @@
   color: var(--color-text-white-dim);
 }
 
-/* ── Form Wrapper ────────────────────────────────────────── */
+/* ── Form Wrapper (CSS Grid: 2 col) ──────────────────────── */
 .lead-form-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(32px, 5vw, 64px);
+  row-gap: var(--space-8);
   width: 100%;
-  max-width: 520px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
+  max-width: 640px;
 }
 
-/* ── Field ───────────────────────────────────────────────── */
-.form-field {
+/* ── Field Group ─────────────────────────────────────────── */
+.form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
 }
 
+/* Span both columns */
+.form-group--full {
+  grid-column: 1 / -1;
+}
+
+/* ── Label ───────────────────────────────────────────────── */
 .form-label {
   font-family: var(--font-body);
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: var(--ls-wider);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.40);
+  color: rgba(255, 255, 255, 0.55);
+  user-select: none;
 }
 
+.form-optional {
+  font-weight: var(--fw-light);
+  text-transform: none;
+  letter-spacing: normal;
+  opacity: 0.55;
+  font-size: 10px;
+}
+
+/* ── Input (Underlined) ──────────────────────────────────── */
 .form-input {
   width: 100%;
-  padding: 16px 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.20);
   border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  padding: 10px 0;
+
   color: var(--color-text-white);
   font-family: var(--font-body);
-  font-size: var(--fs-base);
+  font-size: 1rem;
   font-weight: var(--fw-light);
-  transition: border-color var(--transition), background var(--transition);
-  outline: none;
-  -webkit-appearance: none;
+  line-height: var(--lh-normal);
+
+  transition: border-color 0.3s ease;
 }
 
 .form-input::placeholder {
   color: rgba(255, 255, 255, 0.20);
+  transition: opacity 0.3s ease;
 }
 
 .form-input:focus {
-  border-color: var(--color-accent);
-  background: rgba(255, 255, 255, 0.07);
+  border-bottom-color: var(--color-accent);
+}
+
+.form-input:focus::placeholder {
+  opacity: 0.30;
 }
 
 .form-input.is-invalid {
-  border-color: #E74C3C;
+  border-bottom-color: #E74C3C;
 }
 
+/* ── Error Message ───────────────────────────────────────── */
 .form-error {
+  font-family: var(--font-body);
   font-size: var(--fs-xs);
   color: #E74C3C;
   display: none;
-  letter-spacing: var(--ls-normal);
+  margin-top: calc(var(--space-1) * -1);
 }
 
 .form-error.is-visible {
   display: block;
 }
 
-/* ── Submit Button ───────────────────────────────────────── */
-.form-submit {
+/* ── Submit Row (full-width) ─────────────────────────────── */
+.form-submit-row {
+  grid-column: 1 / -1;
   margin-top: var(--space-3);
+}
+
+.form-submit {
   width: 100%;
-  padding: 18px 36px;
+  padding: 20px 48px;
   background: var(--color-accent);
   color: var(--color-hero-bg);
   border: 1px solid var(--color-accent);
@@ -121,11 +154,15 @@
   font-family: var(--font-body);
   font-size: var(--fs-sm);
   font-weight: var(--fw-medium);
-  letter-spacing: var(--ls-wide);
+  letter-spacing: 0.10em;
   text-transform: uppercase;
 
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), border-color var(--transition), opacity var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition),
+    opacity var(--transition);
   position: relative;
   overflow: hidden;
 }
@@ -140,14 +177,12 @@
   cursor: not-allowed;
 }
 
-/* Success state */
 .form-submit.is-success {
   background: rgba(79, 194, 107, 0.15);
   border-color: #4FC26B;
   color: #4FC26B;
 }
 
-/* Error state */
 .form-submit.is-error {
   background: rgba(231, 76, 60, 0.12);
   border-color: #E74C3C;
@@ -156,20 +191,24 @@
 
 /* ── Privacy Note ────────────────────────────────────────── */
 .form-privacy {
+  grid-column: 1 / -1;
   text-align: center;
   font-size: var(--fs-xs);
-  color: rgba(255, 255, 255, 0.20);
+  color: rgba(255, 255, 255, 0.18);
   line-height: var(--lh-normal);
-  margin-top: var(--space-2);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 480px) {
+@media (max-width: 640px) {
   .lead-form-wrapper {
+    grid-template-columns: 1fr;
     max-width: 100%;
+    row-gap: var(--space-7);
   }
 
-  .form-input {
-    padding: 14px 16px;
+  .form-group--full,
+  .form-submit-row,
+  .form-privacy {
+    grid-column: 1;
   }
 }
