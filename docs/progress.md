@@ -282,3 +282,31 @@ src/
 | `src/css/components.css` | Shimmer ::after sweep на .btn-primary/.btn-accent, .btn-block клас |
 | `src/css/pricing.css` | translateY(-6px) hover lift на .pricing-card |
 | `src/index.html` | .reveal на 15+ елементах, .phone-tilt-wrapper, видалено inline-style |
+
+---
+
+## Сесія: 2026-05-26 (Redesign Блоку 6 → "Для кого")
+
+### Поточна задача
+Повна заміна концепції Блоку 6: з абстрактного "bespoke-оферу" на фокусний блок цільової аудиторії "Для кого ми створюємо цифрові рішення?".
+
+### Ціль
+3-колонковий CSS Grid із трьома портретами клієнта. Преміальна типографіка: Cormorant Garamond для назв категорій + Inter для описів. Без іконок, рамок, кольорових плашок — тільки текст і простір.
+
+### Покроковий план
+- [x] **Т1.** ПРОТОКОЛ СТАРТУ
+- [x] **Т2.** Переписати `src/css/pricing.css` — нові класи `.audience`, `.audience-grid`, `.audience-item`, `.audience-category`, `.audience-text`
+- [x] **Т3.** Оновити Block 6 в `src/index.html` — нова HTML-структура з 3 колонками
+- [x] **Т4.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено — Redesign Блоку 6 (Цільова аудиторія)
+| | До | Після |
+|---|---|---|
+| Концепція | "Bespoke" оффер з абстрактними тезами | 3 портрети клієнта, конкретна self-identification |
+| Section class | `.pricing` | `.audience` (id="pricing" збережено для nav-якоря) |
+| HTML | `.bespoke-content` центрований блок | `.audience-grid` — repeat(3, 1fr) |
+| Заголовки категорій | — | Cormorant Garamond, clamp(1.5→2.25rem), fw-light |
+| Описи | — | Inter, fs-sm, rgba(255,255,255,0.45) |
+| Декор | divider line, dot separators | тільки border-top hairline, hover: gold |
+| Адаптив | — | desktop 3col → tablet 2col (≤900px) → mobile 1col (≤560px) |
+| Анімації | `.reveal .reveal-d1` на bespoke-content | `.reveal` + `.reveal-d1` + `.reveal-d2` на кожному item |

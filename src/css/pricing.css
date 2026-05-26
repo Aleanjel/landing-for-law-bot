@@ -1,90 +1,92 @@
-/* ── Блок 6: Bespoke Service (Оффер) ───────────────────── */
-.pricing {
+/* ── Блок 6: Цільова аудиторія ──────────────────────────── */
+.audience {
   background-color: var(--color-dark);
 }
 
-.pricing .container {
+.audience .container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-9);
 }
 
-/* ── Bespoke Content Block ───────────────────────────────── */
-.bespoke-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-8);
-  max-width: 800px;
-  width: 100%;
-  text-align: center;
+.audience-header {
+  max-width: 680px;
 }
 
-/* ── Grand Heading ───────────────────────────────────────── */
-.bespoke-title {
-  font-family: var(--font-display);
-  font-size: var(--fs-4xl);
-  font-weight: var(--fw-light);
+.audience-header h2 {
   color: var(--color-text-white);
-  line-height: var(--lh-tight);
-  letter-spacing: var(--ls-tight);
+  margin-bottom: 0;
 }
 
-/* ── Gold Hairline Divider ───────────────────────────────── */
-.bespoke-divider {
-  width: 40px;
-  height: 1px;
-  background: var(--color-accent);
-  flex-shrink: 0;
+.audience-header .section-label {
+  color: rgba(200, 169, 110, 0.65);
 }
 
-/* ── Services Line ───────────────────────────────────────── */
-.bespoke-services {
+/* ── 3-Column Grid ───────────────────────────────────────── */
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(40px, 6vw, 80px);
+}
+
+/* ── Audience Item ───────────────────────────────────────── */
+.audience-item {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-5);
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  transition: border-color var(--transition);
+}
 
+.audience-item:hover {
+  border-top-color: rgba(200, 169, 110, 0.40);
+}
+
+/* ── Serial Number ───────────────────────────────────────── */
+.audience-num {
   font-family: var(--font-body);
   font-size: var(--fs-xs);
-  font-weight: var(--fw-light);
+  font-weight: var(--fw-medium);
   letter-spacing: var(--ls-wider);
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.40);
-}
-
-.bespoke-dot {
   color: var(--color-accent);
-  font-size: 0.6em;
-  line-height: 1;
-  opacity: 0.7;
+  opacity: 0.65;
+  user-select: none;
 }
 
-/* ── Disclaimer Note ─────────────────────────────────────── */
-.bespoke-note {
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
+/* ── Category Heading ────────────────────────────────────── */
+.audience-category {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.25rem);
   font-weight: var(--fw-light);
-  color: rgba(255, 255, 255, 0.30);
+  color: var(--color-text-white);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+}
+
+/* ── Description ─────────────────────────────────────────── */
+.audience-text {
+  font-size: var(--fs-sm);
   line-height: var(--lh-loose);
-  max-width: 460px;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .bespoke-title {
-    font-size: var(--fs-3xl);
-  }
-
-  .bespoke-content {
-    gap: var(--space-7);
+@media (max-width: 900px) {
+  .audience-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(32px, 5vw, 56px);
   }
 }
 
-@media (max-width: 480px) {
-  .bespoke-title {
-    font-size: var(--fs-2xl);
+@media (max-width: 560px) {
+  .audience-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .audience-item {
+    padding-block: var(--space-6);
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
   }
 }
