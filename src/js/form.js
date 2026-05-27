@@ -117,9 +117,12 @@ function validate(form) {
     valid = false;
   }
 
-  // Email — за бажанням
+  // Email — обов'язкове
   const emailVal = emailInput.value.trim();
-  if (emailVal && !EMAIL_RE.test(emailVal)) {
+  if (!emailVal) {
+    showError(emailInput, e('email'), 'Введіть вашу email-адресу');
+    valid = false;
+  } else if (!EMAIL_RE.test(emailVal)) {
     showError(emailInput, e('email'), 'Введіть коректну адресу (name@mail.ua)');
     valid = false;
   }

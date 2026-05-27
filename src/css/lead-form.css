@@ -84,6 +84,12 @@
   font-size: 10px;
 }
 
+.form-required {
+  color: var(--color-accent);
+  font-weight: var(--fw-medium);
+  margin-left: 2px;
+}
+
 /* ── Input (Underlined) ──────────────────────────────────── */
 .form-input {
   width: 100%;

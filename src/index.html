@@ -311,14 +311,11 @@
           <article class="testimonial-item reveal">
             <div class="testimonial-avatar testimonial-avatar--1" aria-hidden="true">А</div>
             <blockquote class="testimonial-body">
-              <p class="testimonial-problem">
-                Щотижня я міг не взяти слухавку 5–7 разів під час засідань. Клієнти не чекали і йшли до іншого адвоката.
-              </p>
               <p class="testimonial-solution">
-                Після підключення LexBot весь первинний контакт автоматизовано: бот приймає запит, ставить уточнюючі питання та пропонує вільні слоти.
+                Під час засідань я фізично не можу відповідати на дзвінки — і раніше це регулярно коштувало мені клієнтів. Зараз бот приймає запит, уточнює деталі і пропонує слот для зустрічі. Я просто бачу нові записи в календарі. Зручно і без зайвих нервів.
               </p>
               <p class="testimonial-result">
-                +18 нових консультацій за перший місяць, нуль пропущених лідів.
+                +18 нових консультацій за перший місяць.
               </p>
               <footer class="testimonial-author">
                 <strong class="testimonial-name">Андрій Коваль</strong>
@@ -330,14 +327,11 @@
           <article class="testimonial-item reveal reveal-d1">
             <div class="testimonial-avatar testimonial-avatar--2" aria-hidden="true">О</div>
             <blockquote class="testimonial-body">
-              <p class="testimonial-problem">
-                Ми — команда з 4 юристів. Адміністратор витрачав 3 години щодня лише на первинну обробку запитів і розподіл справ між партнерами.
-              </p>
               <p class="testimonial-solution">
-                Бот сам кваліфікує запит, визначає напрямок і передає заявку профільному партнеру з повним контекстом ситуації.
+                У нас четверо юристів, і ми тонули в первинній обробці запитів. Бот кваліфікує звернення і одразу передає профільному партнеру з повним контекстом — без зайвих дзвінків між нами і без "розкажіть усе спочатку".
               </p>
               <p class="testimonial-result">
-                Скорочення часу на адмін з 3 год/день до 40 хв. ROI за 6 тижнів.
+                Час на адміністрування — з 3 годин до 40 хвилин на день.
               </p>
               <footer class="testimonial-author">
                 <strong class="testimonial-name">Олена Мартиненко</strong>
@@ -349,14 +343,11 @@
           <article class="testimonial-item reveal reveal-d2">
             <div class="testimonial-avatar testimonial-avatar--3" aria-hidden="true">В</div>
             <blockquote class="testimonial-body">
-              <p class="testimonial-problem">
-                Моя практика — виключно M&A угоди з чеком від $5000. Я отримував десятки нерелевантних звернень і витрачав час на їх відсів.
-              </p>
               <p class="testimonial-solution">
-                LexBot проводить глибокий брифінг ще до моєї участі: виявляє бюджет, строки, тип угоди. Нецільові запити відсіваються автоматично.
+                Я спеціалізуюся на угодах із великим чеком, і нерелевантні звернення просто крали мій час. Бот проводить попередній брифінг і сам відсіює тих, кому не можу допомогти. До мене доходять тільки ті, хто розуміє що хоче і готовий платити.
               </p>
               <p class="testimonial-result">
-                Конверсія первинного контакту в угоду зросла з 12% до 31%.
+                Конверсія первинного контакту в угоду — з 12% до 31%.
               </p>
               <footer class="testimonial-author">
                 <strong class="testimonial-name">Василь Петренко</strong>
@@ -399,9 +390,9 @@
 
           <div class="audience-item reveal reveal-d2" role="listitem">
             <span class="audience-num" aria-label="03">03</span>
-            <h3 class="audience-category">Вузькопрофільні експерти</h3>
+            <h3 class="audience-category">Нотаріуси та нотаріальні контори</h3>
             <p class="audience-text">
-              Для фахівців із високим чеком. Бот проведе глибинний первинний брифінг та відсіє нецільові звернення ще до вашої участі.
+              Для фахівців із великим потоком стандартизованих запитів. Бот автоматизує запис на прийом, миттєво надає клієнтам перелік документів для типових дій — довіреностей, договорів, спадщини — та збирає базові відомості ще до їхнього приходу в офіс.
             </p>
           </div>
 
@@ -426,7 +417,7 @@
 
           <!-- Рядок 1: ПІБ (col 1) + Телефон (col 2) -->
           <div class="form-group">
-            <label for="field-fullname" class="form-label">ПІБ</label>
+            <label for="field-fullname" class="form-label">ПІБ<span class="form-required">*</span></label>
             <input
               type="text"
               id="field-fullname"
@@ -440,7 +431,7 @@
           </div>
 
           <div class="form-group">
-            <label for="field-phone" class="form-label">Номер телефону</label>
+            <label for="field-phone" class="form-label">Номер телефону<span class="form-required">*</span></label>
             <input
               type="tel"
               id="field-phone"
@@ -454,11 +445,9 @@
             <span class="form-error" data-error="phone" role="alert" aria-live="polite"></span>
           </div>
 
-          <!-- Рядок 2: Email (col 1) + Telegram (col 2) — за бажанням -->
+          <!-- Рядок 2: Email (col 1, обов'язковий) + Telegram (col 2, опційний) -->
           <div class="form-group">
-            <label for="field-email" class="form-label">
-              Email <span class="form-optional">(за бажанням)</span>
-            </label>
+            <label for="field-email" class="form-label">Email<span class="form-required">*</span></label>
             <input
               type="email"
               id="field-email"
@@ -466,14 +455,13 @@
               class="form-input"
               placeholder="name@lawfirm.ua"
               autocomplete="email"
+              required
             >
             <span class="form-error" data-error="email" role="alert" aria-live="polite"></span>
           </div>
 
           <div class="form-group">
-            <label for="field-telegram" class="form-label">
-              Telegram <span class="form-optional">(за бажанням)</span>
-            </label>
+            <label for="field-telegram" class="form-label">Telegram</label>
             <input
               type="text"
               id="field-telegram"
