@@ -775,3 +775,48 @@ src/
 3. Перевірити Testimonials: картки з padding 32px всередині, граційний hover shadow
 4. Перевірити Audience: картки з рамкою, 16px gap між ними на мобільному
 5. Перевірити що `margin-bottom` на h2 не ламає секції з `margin-bottom: 0` override
+
+---
+
+## Сесія: 2026-05-27 (Sticky Fix — overflow-x: hidden → clip)
+
+### Поточна задача
+Відновити `position: sticky` для лівої колонки Features на десктопі після того, як `overflow-x: hidden` на `html`/`body` вбив sticky-ефект.
+
+### Root-cause
+`overflow-x: hidden` на `html` і `body` (додано у попередній сесії для horizontal overflow fix) **створює scroll container** на цих елементах. `position: sticky` прилипає відносно найближчого scroll container-а, а не viewport. Якщо scroll container має `overflow: hidden`, прокручування заблоковано → sticky не має де "прилипати" → веде себе як `position: static`.
+
+### Рішення
+`overflow-x: clip` — обрізає контент візуально (горизонтальний overflow прихований), але **не створює scroll container** (на відміну від `hidden`). Sticky продовжує працювати відносно viewport.
+
+| Значення | Обрізає overflow | Створює scroll container | Ламає sticky |
+|---|---|---|---|
+| `hidden` | ✓ | ✓ | ✓ |
+| `clip` | ✓ | ✗ | ✗ |
+
+### Покроковий план
+- [x] **С1.** ПРОТОКОЛ СТАРТУ
+- [x] **С2.** `base.css` — замінити `overflow-x: hidden` → `overflow-x: clip` на `html` і `body`
+- [x] **С3.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-05-27 (Sticky Fix)
+
+**Статус: Done**
+
+### Зміна — один файл, два рядки
+
+| Файл | Елемент | До | Після |
+|---|---|---|---|
+| `base.css` | `html` | `overflow-x: hidden` | `overflow-x: clip` |
+| `base.css` | `body` | `overflow-x: hidden` | `overflow-x: clip` |
+
+### Ефект
+- `position: sticky` на `.features-sticky-col` відновлено — ліва колонка фіксується при скролі правої на десктопі ✓
+- Горизонтальний overflow залишається прихованим — `clip` так само обрізає контент за межами елемента ✓
+- `overflow-x: clip` підтримується Chrome 90+, Firefox 81+, Safari 16+ ✓
+- Mobile override (`position: static` у `@media (max-width: 900px)`) не змінювався — мобільна версія коректна ✓
+
+### Чому features.css не потребував змін
+`position: sticky` і `top: calc(...)` правильно задані у `.features-sticky-col` поза медіазапитами. Єдиною причиною поламки був ancestor з `overflow: hidden`, що створює scroll container.
