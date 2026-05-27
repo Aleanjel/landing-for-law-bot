@@ -149,7 +149,35 @@
   animation: label-line 0.6s ease-out 0.3s both;
 }
 
-/* ── 6. Reduced Motion ───────────────────────────────────── */
+/* ── 6. Chat Live Dialog (initial state for JS animation) ── */
+
+/*
+  Messages start invisible so JS can reveal them sequentially.
+  If JS never runs (network failure, etc.) the fallback at the
+  bottom of this block makes everything visible after 8s.
+*/
+.phone-chat .phone-msg:not(.typing) {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.phone-chat .phone-msg.typing {
+  opacity: 0;
+}
+
+/* Smooth appear transition applied by JS */
+.phone-chat .phone-msg.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.phone-chat .phone-msg.typing.is-visible {
+  opacity: 1 !important;
+  transition: opacity 0.25s ease;
+}
+
+/* ── 7. Reduced Motion ───────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
@@ -185,5 +213,13 @@
   .typing-dot {
     animation: none;
     opacity: 0.6;
+  }
+
+  /* Show all chat messages immediately when motion is reduced */
+  .phone-chat .phone-msg:not(.typing),
+  .phone-chat .phone-msg.typing {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }

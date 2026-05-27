@@ -117,9 +117,92 @@ function initPhoneTilt() {
   }, { passive: true });
 }
 
+/* ── Chat Live Dialog Animation ─────────────────────────── */
+
+function initChatTyping() {
+  const chat = document.querySelector('.phone-chat');
+  if (!chat) return;
+
+  /* Якщо користувач обрав reduced motion — показуємо все статично */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    chat.querySelectorAll('.phone-msg').forEach(m => m.classList.add('is-visible'));
+    return;
+  }
+
+  const messages  = Array.from(chat.querySelectorAll('.phone-msg:not(.typing)'));
+  const typingEl  = chat.querySelector('.phone-msg.typing');
+
+  if (!messages.length) return;
+
+  /* ── Проміс-обгортка навколо setTimeout ─────────────────── */
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  /* ── Приховуємо/показуємо через клас is-visible ─────────── */
+  function showEl(el, delay) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        el.classList.add('is-visible');
+        resolve();
+      }, delay);
+    });
+  }
+
+  function hideEl(el) {
+    el.classList.remove('is-visible');
+  }
+
+  /* ── Основний цикл діалогу ───────────────────────────────── */
+  async function playSequence() {
+    /* 1. Скидаємо стан */
+    messages.forEach(m => hideEl(m));
+    if (typingEl) hideEl(typingEl);
+
+    await wait(800); /* невелика пауза перед стартом */
+
+    for (let i = 0; i < messages.length; i++) {
+      const msg   = messages[i];
+      const isBot = msg.classList.contains('phone-msg--bot');
+
+      if (isBot && typingEl) {
+        /* Показуємо індикатор "друкує..." */
+        showEl(typingEl, 0);
+        await wait(1100 + Math.random() * 400); /* бот "думає" */
+        hideEl(typingEl);
+        await wait(120); /* мала пауза перед появою повідомлення */
+      } else {
+        /* Повідомлення користувача — коротка пауза без typing */
+        await wait(500);
+      }
+
+      /* Показуємо саме повідомлення */
+      msg.classList.add('is-visible');
+
+      /* Затримка перед наступним повідомленням */
+      const pause = i === messages.length - 1 ? 0 : isBot ? 1200 : 900;
+      await wait(pause);
+    }
+
+    /* Показуємо typing у кінці (бот продовжує "відповідати") */
+    if (typingEl) {
+      await wait(400);
+      showEl(typingEl, 0);
+    }
+
+    /* Пауза, потім перезапуск */
+    await wait(3800);
+    playSequence();
+  }
+
+  /* Запускаємо після короткої затримки після load */
+  setTimeout(playSequence, 400);
+}
+
 /* ── Init ───────────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initPhoneTilt();
+  initChatTyping();
 });

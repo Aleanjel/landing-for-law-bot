@@ -12,8 +12,8 @@
 
   /* Text */
   --color-text-primary:   #111111;
-  --color-text-secondary: #4A4A4A;
-  --color-text-muted:     #888888;
+  --color-text-secondary: #2A2A2A;
+  --color-text-muted:     #666666;
   --color-text-white:     #FFFFFF;
   --color-text-white-dim: rgba(255, 255, 255, 0.60);
 
@@ -59,7 +59,7 @@
   --space-9:   96px;
   --space-10:  128px;
 
-  --section-padding-y: clamp(80px, 10vw, 140px);
+  --section-padding-y: clamp(48px, 5vw, 96px);
   --container-max:     1200px;
   --container-padding: clamp(20px, 5vw, 80px);
 

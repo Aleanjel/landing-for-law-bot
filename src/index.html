@@ -17,9 +17,10 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/hero.css">
   <link rel="stylesheet" href="css/problems.css">
+  <link rel="stylesheet" href="css/calculator.css">
   <link rel="stylesheet" href="css/features.css">
   <link rel="stylesheet" href="css/objections.css">
-  <link rel="stylesheet" href="css/approach.css">
+  <link rel="stylesheet" href="css/testimonials.css">
   <link rel="stylesheet" href="css/pricing.css">
   <link rel="stylesheet" href="css/lead-form.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -33,7 +34,7 @@
       <nav class="site-nav" aria-label="Навігація сайтом">
         <a href="#problems">Проблема</a>
         <a href="#features">Рішення</a>
-        <a href="#pricing">Тарифи</a>
+        <a href="#testimonials">Відгуки</a>
         <a href="#contact">Контакт</a>
       </nav>
     </div>
@@ -151,57 +152,123 @@
       </div>
     </section>
 
-    <!-- ─── Блок 3: Функціонал ─────────────────────────────── -->
-    <section class="features" id="features" aria-labelledby="features-title">
+    <!-- ─── Блок 3: Калькулятор ───────────────────────────── -->
+    <section class="calculator" id="calculator" aria-labelledby="calculator-title">
       <div class="container">
 
-        <div class="features-header reveal">
-          <span class="section-label section-label--light">Можливості</span>
-          <h2 id="features-title">Ваш персональний цифровий асистент, який ніколи не спить.</h2>
+        <div class="calculator-header reveal">
+          <span class="section-label">Калькулятор</span>
+          <h2 id="calculator-title">Скільки ви втрачаєте щомісяця?</h2>
         </div>
 
-        <div class="features-list" role="list">
-
-          <div class="feature-item reveal" role="listitem">
-            <span class="feature-num" aria-label="01">01</span>
-            <h3 class="feature-title">
-              AI-Консультант
-              <span class="feature-tag">Лід-магніт</span>
-            </h3>
-            <p class="feature-text">
-              Бот проводить первинне опитування, відповідає на базові питання за допомогою ШІ та екологічно підводить людину до запису на платну консультацію.
-            </p>
+        <div class="calculator-display reveal reveal-d1" aria-live="polite" aria-atomic="true">
+          <span class="calc-prefix">Ви втрачаєте</span>
+          <div class="calc-result">
+            <span class="calc-amount" id="calc-amount">$300</span>
+            <span class="calc-period">щомісяця</span>
           </div>
-
-          <div class="feature-item reveal reveal-d1" role="listitem">
-            <span class="feature-num" aria-label="02">02</span>
-            <h3 class="feature-title">Автоматичний запис</h3>
-            <p class="feature-text">
-              Клієнт сам обирає вільний слот. Заявка миттєво фіксується у вашій Google Таблиці або приходить вам в особисті повідомлення.
-            </p>
-          </div>
-
-          <div class="feature-item reveal reveal-d2" role="listitem">
-            <span class="feature-num" aria-label="03">03</span>
-            <h3 class="feature-title">Документи під&nbsp;ключ</h3>
-            <p class="feature-text">
-              Можливість для клієнта замовити розробку документа або купити готовий шаблон — договори, скарги — прямо в&nbsp;Telegram.
-            </p>
-          </div>
-
-          <div class="feature-item reveal reveal-d3" role="listitem">
-            <span class="feature-num" aria-label="04">04</span>
-            <h3 class="feature-title">Цифрова візитка компанії</h3>
-            <p class="feature-text">
-              Інформація про ваші послуги, експертність та прайс завжди під рукою у клієнта. Перший крок до довіри ще до дзвінка.
-            </p>
-          </div>
-
         </div>
+
+        <div class="calculator-controls reveal reveal-d2">
+          <div class="calc-slider-wrap">
+            <label class="calc-label" for="calc-clients">
+              Кількість втрачених клієнтів на місяць
+              <span class="calc-value-display" id="calc-value-display">3</span>
+            </label>
+            <input
+              type="range"
+              id="calc-clients"
+              min="1"
+              max="50"
+              value="3"
+              class="calc-slider"
+              aria-label="Кількість втрачених клієнтів на місяць"
+              aria-valuemin="1"
+              aria-valuemax="50"
+              aria-valuenow="3"
+            >
+            <div class="calc-slider-markers" aria-hidden="true">
+              <span>1</span>
+              <span>25</span>
+              <span>50</span>
+            </div>
+          </div>
+
+          <div class="calc-fixed">
+            <span class="calc-fixed-label">Фіксований середній чек консультації</span>
+            <span class="calc-fixed-value">$100</span>
+          </div>
+        </div>
+
+        <div class="calculator-cta reveal reveal-d3">
+          <a href="#contact" class="btn btn-dark">Підключити бота та зупинити втрати</a>
+        </div>
+
       </div>
     </section>
 
-    <!-- ─── Блок 4: Versus ───────────────────────────────── -->
+    <!-- ─── Блок 4: Функціонал — Sticky Scroll ───────────── -->
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="container">
+
+        <!-- Left: Sticky column -->
+        <div class="features-sticky-col">
+          <div class="features-header reveal">
+            <span class="section-label section-label--light">Можливості</span>
+            <h2 id="features-title">Ваш персональний цифровий асистент, який ніколи не спить.</h2>
+          </div>
+          <p class="features-desc reveal reveal-d1">
+            Чотири ключові інструменти, що автоматизують рутину та збільшують кількість ваших платних консультацій — без додаткових витрат на персонал.
+          </p>
+          <a href="#contact" class="btn btn-primary reveal reveal-d2">Почати безкоштовно</a>
+        </div>
+
+        <!-- Right: Scrolling column -->
+        <div class="features-scroll-col">
+          <div class="features-list" role="list">
+
+            <div class="feature-item reveal" role="listitem">
+              <span class="feature-num" aria-label="01">01</span>
+              <h3 class="feature-title">
+                AI-Консультант
+                <span class="feature-tag">Лід-магніт</span>
+              </h3>
+              <p class="feature-text">
+                Бот проводить первинне опитування, відповідає на базові питання за допомогою ШІ та екологічно підводить людину до запису на платну консультацію.
+              </p>
+            </div>
+
+            <div class="feature-item reveal reveal-d1" role="listitem">
+              <span class="feature-num" aria-label="02">02</span>
+              <h3 class="feature-title">Автоматичний запис</h3>
+              <p class="feature-text">
+                Клієнт сам обирає вільний слот. Заявка миттєво фіксується у вашій Google Таблиці або приходить вам в особисті повідомлення.
+              </p>
+            </div>
+
+            <div class="feature-item reveal reveal-d2" role="listitem">
+              <span class="feature-num" aria-label="03">03</span>
+              <h3 class="feature-title">Документи під&nbsp;ключ</h3>
+              <p class="feature-text">
+                Можливість для клієнта замовити розробку документа або купити готовий шаблон — договори, скарги — прямо в&nbsp;Telegram.
+              </p>
+            </div>
+
+            <div class="feature-item reveal reveal-d3" role="listitem">
+              <span class="feature-num" aria-label="04">04</span>
+              <h3 class="feature-title">Цифрова візитка компанії</h3>
+              <p class="feature-text">
+                Інформація про ваші послуги, експертність та прайс завжди під рукою у клієнта. Перший крок до довіри ще до дзвінка.
+              </p>
+            </div>
+
+          </div>
+        </div><!-- /.features-scroll-col -->
+
+      </div>
+    </section>
+
+    <!-- ─── Блок 5: Versus ───────────────────────────────── -->
     <section class="objections" id="objections" aria-label="Порівняння сценаріїв">
       <div class="container">
 
@@ -230,52 +297,80 @@
       </div>
     </section>
 
-    <!-- ─── Блок 5: Підхід ─────────────────────────────────── -->
-    <section class="approach" id="approach" aria-labelledby="approach-title">
+    <!-- ─── Блок 6: Відгуки ───────────────────────────────── -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
       <div class="container">
 
-        <div class="approach-header reveal">
-          <span class="section-label">Наш підхід</span>
-          <h2 id="approach-title">Жодних шаблонів. Тільки індивідуальна розробка.</h2>
+        <div class="testimonials-header reveal">
+          <span class="section-label">Результати</span>
+          <h2 id="testimonials-title">Як змінилась практика наших клієнтів</h2>
         </div>
 
-        <div class="approach-list">
+        <div class="testimonials-grid">
 
-          <div class="approach-item reveal reveal-d1">
-            <span class="approach-num" aria-hidden="true">01</span>
-            <div class="approach-body">
-              <h3 class="approach-title">Повна кастомізація</h3>
-              <p class="approach-text">
-                Налаштовуємо логіку, тексти та стиль спілкування бота виключно під ваш бренд та специфіку права.
+          <article class="testimonial-item reveal">
+            <div class="testimonial-avatar testimonial-avatar--1" aria-hidden="true">А</div>
+            <blockquote class="testimonial-body">
+              <p class="testimonial-problem">
+                Щотижня я міг не взяти слухавку 5–7 разів під час засідань. Клієнти не чекали і йшли до іншого адвоката.
               </p>
-            </div>
-          </div>
+              <p class="testimonial-solution">
+                Після підключення LexBot весь первинний контакт автоматизовано: бот приймає запит, ставить уточнюючі питання та пропонує вільні слоти.
+              </p>
+              <p class="testimonial-result">
+                +18 нових консультацій за перший місяць, нуль пропущених лідів.
+              </p>
+              <footer class="testimonial-author">
+                <strong class="testimonial-name">Андрій Коваль</strong>
+                <span class="testimonial-role">Адвокат, Київ · Трудове право</span>
+              </footer>
+            </blockquote>
+          </article>
 
-          <div class="approach-item reveal reveal-d2">
-            <span class="approach-num" aria-hidden="true">02</span>
-            <div class="approach-body">
-              <h3 class="approach-title">Швидка інтеграція</h3>
-              <p class="approach-text">
-                Усі дані акуратно і безперебійно летять у ваші Google Sheets або напряму вам в Telegram.
+          <article class="testimonial-item reveal reveal-d1">
+            <div class="testimonial-avatar testimonial-avatar--2" aria-hidden="true">О</div>
+            <blockquote class="testimonial-body">
+              <p class="testimonial-problem">
+                Ми — команда з 4 юристів. Адміністратор витрачав 3 години щодня лише на первинну обробку запитів і розподіл справ між партнерами.
               </p>
-            </div>
-          </div>
+              <p class="testimonial-solution">
+                Бот сам кваліфікує запит, визначає напрямок і передає заявку профільному партнеру з повним контекстом ситуації.
+              </p>
+              <p class="testimonial-result">
+                Скорочення часу на адмін з 3 год/день до 40 хв. ROI за 6 тижнів.
+              </p>
+              <footer class="testimonial-author">
+                <strong class="testimonial-name">Олена Мартиненко</strong>
+                <span class="testimonial-role">Управляючий партнер · Корпоративне право</span>
+              </footer>
+            </blockquote>
+          </article>
 
-          <div class="approach-item reveal reveal-d3">
-            <span class="approach-num" aria-hidden="true">03</span>
-            <div class="approach-body">
-              <h3 class="approach-title">Технічний супровід</h3>
-              <p class="approach-text">
-                Ви займаєтесь юриспруденцією, ми — технікою. Якщо щось потрібно змінити або додати — ми на зв'язку і робимо це швидко.
+          <article class="testimonial-item reveal reveal-d2">
+            <div class="testimonial-avatar testimonial-avatar--3" aria-hidden="true">В</div>
+            <blockquote class="testimonial-body">
+              <p class="testimonial-problem">
+                Моя практика — виключно M&A угоди з чеком від $5000. Я отримував десятки нерелевантних звернень і витрачав час на їх відсів.
               </p>
-            </div>
-          </div>
+              <p class="testimonial-solution">
+                LexBot проводить глибокий брифінг ще до моєї участі: виявляє бюджет, строки, тип угоди. Нецільові запити відсіваються автоматично.
+              </p>
+              <p class="testimonial-result">
+                Конверсія первинного контакту в угоду зросла з 12% до 31%.
+              </p>
+              <footer class="testimonial-author">
+                <strong class="testimonial-name">Василь Петренко</strong>
+                <span class="testimonial-role">Адвокат · M&amp;A та корпоративні угоди</span>
+              </footer>
+            </blockquote>
+          </article>
 
         </div>
+
       </div>
     </section>
 
-    <!-- ─── Блок 6: Цільова аудиторія ───────────────────── -->
+    <!-- ─── Блок 7: Цільова аудиторія ───────────────────── -->
     <section class="audience" id="pricing" aria-labelledby="audience-title">
       <div class="container">
 
@@ -315,7 +410,7 @@
       </div>
     </section>
 
-    <!-- ─── Блок 7: Lead Form ──────────────────────────────── -->
+    <!-- ─── Блок 8: Lead Form ──────────────────────────────── -->
     <section class="lead-form-section" id="contact" aria-labelledby="form-title">
       <div class="container">
 
@@ -416,6 +511,7 @@
     </div>
   </footer>
 
+  <script src="js/calculator.js"></script>
   <script src="js/form.js"></script>
   <script src="js/animations.js"></script>
 </body>

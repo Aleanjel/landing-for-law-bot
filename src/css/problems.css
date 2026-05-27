@@ -6,7 +6,7 @@
 .problems .container {
   display: flex;
   flex-direction: column;
-  gap: var(--space-9);
+  gap: var(--space-6);
 }
 
 .problems-header {
@@ -26,7 +26,7 @@
 }
 
 .problem-card {
-  padding: var(--space-7) var(--space-6);
+  padding: var(--space-6) var(--space-5);
   background: var(--color-white);
   border-left: 2px solid var(--color-dark);
   position: relative;
@@ -62,9 +62,10 @@
 }
 
 .problem-card-text {
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-loose);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
 }
 
 /* Bottom stat line */

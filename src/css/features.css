@@ -1,33 +1,63 @@
-/* ── Блок 3: Функціонал (2-col grid) ────────────────────── */
+/* ── Блок 4: Функціонал (Sticky Scroll) ──────────────────── */
 .features {
   background-color: var(--color-dark);
+  /* Прибираємо вертикальний padding секції — керують дочірні колонки */
+  padding-block: 0;
 }
 
 .features .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: clamp(48px, 7vw, 96px);
+}
+
+/* ── Left: Sticky column ─────────────────────────────────── */
+.features-sticky-col {
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-6));
+  /* Padding замість секційного */
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--space-8);
   display: flex;
   flex-direction: column;
-  gap: var(--space-7);
+  gap: var(--space-5);
 }
 
 .features-header {
-  max-width: 640px;
+  display: flex;
+  flex-direction: column;
 }
 
 .features-header h2 {
   color: var(--color-text-white);
-  margin-bottom: var(--space-4);
+  margin-top: var(--space-4);
+  margin-bottom: 0;
 }
 
 .features-header .section-label {
   color: rgba(200, 169, 110, 0.65);
 }
 
-/* ── 2-Column Grid ───────────────────────────────────────── */
+/* Додатковий описовий абзац у sticky-колонці */
+.features-desc {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
+  line-height: var(--lh-loose);
+  color: rgba(255, 255, 255, 0.60);
+  max-width: 380px;
+}
+
+/* ── Right: Scroll column ────────────────────────────────── */
+.features-scroll-col {
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--space-8);
+}
+
+/* ── Feature List ────────────────────────────────────────── */
 .features-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  column-gap: clamp(48px, 7vw, 96px);
-  row-gap: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Feature Item ────────────────────────────────────────── */
@@ -35,19 +65,25 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  /* Внутрішній padding — текст не торкається країв виділення */
   padding: var(--space-6) var(--space-5);
   border-top: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 12px;
   position: relative;
   transition:
-    background var(--transition),
-    border-color var(--transition),
-    box-shadow var(--transition);
+    background 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
+/* Full card highlight on hover */
 .feature-item:hover {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.04);
   border-top-color: rgba(200, 169, 110, 0.35);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
 
 /* ── Serial Number ───────────────────────────────────────── */
@@ -89,16 +125,41 @@
 /* ── Description ─────────────────────────────────────────── */
 .feature-text {
   font-size: var(--fs-base);
+  font-weight: var(--fw-regular);
   line-height: var(--lh-loose);
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 480px;
 }
 
-/* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .features-list {
-    grid-template-columns: 1fr;
+/* ── Responsive: tablet ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .features {
+    padding-block: var(--section-padding-y);
   }
 
+  .features .container {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+
+  .features-sticky-col {
+    position: static;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .features-scroll-col {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .feature-text {
+    max-width: 100%;
+  }
+}
+
+/* ── Responsive: mobile ──────────────────────────────────── */
+@media (max-width: 480px) {
   .feature-item {
     padding-block: var(--space-6);
   }

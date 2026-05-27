@@ -426,3 +426,159 @@ src/
 |---|---|---|
 | email | `/^[^\s@]+@[^\s@]+\.[^\s@]+$/` | name@mail.ua |
 | contact | `/^(\+\d{10,15}\|[@a-zA-Z][a-zA-Z0-9_]{4,})$/` | +380661234567, @username |
+
+---
+
+## Сесія: 2026-05-27 (Масштабування — Калькулятор, Відгуки, Sticky Scroll, Chat Animation)
+
+### Поточна задача
+Розширення лендінгу з 7 до 8 блоків: додати Калькулятор (Блок 3) та Відгуки (Блок 6), переробити Функціонал на Sticky Scroll (Блок 4), додати анімацію живого діалогу у phone mockup Hero.
+
+### Ціль
+Зберегти всі попередні напрацювання (Audience, Lead Form, Versus, Problems) і додати конверсійні блоки з преміальним UI/UX згідно дизайн-системи проєкту.
+
+### Застосовані скіли
+- `frontend-developer.md` — Bold aesthetic direction, staggered reveals, spatial composition
+- `ui ux pro max.md` — Animation §7 (duration-timing, transform-performance), Layout §5 (mobile-first), Forms §8
+
+### Нова архітектура (8 блоків)
+
+| # | Секція | id | CSS | Стан |
+|---|--------|----|-----|------|
+| 1 | Hero + Chat Typing Animation | hero | hero.css | оновлено (JS anim) |
+| 2 | Проблематика | problems | problems.css | без змін |
+| 3 | Калькулятор (НОВИЙ) | calculator | calculator.css | NEW |
+| 4 | Функціонал — Sticky Scroll | features | features.css | переписано |
+| 5 | Заперечення Versus | objections | objections.css | без змін |
+| 6 | Відгуки (НОВИЙ) | testimonials | testimonials.css | NEW |
+| 7 | Цільова аудиторія | pricing | pricing.css | без змін |
+| 8 | Lead Form | contact | lead-form.css | без змін |
+
+**Видалено:** Блок "Підхід" (`approach.css` — файл залишається, секція з HTML прибрана)
+
+### Нові файли
+| Файл | Опис |
+|---|---|
+| `src/css/calculator.css` | Range slider, display велике число, controls |
+| `src/css/testimonials.css` | 3-col grid, grayscale аватари, P→S→R структура |
+| `src/js/calculator.js` | Slider input → dynamic loss calculation, fill track |
+
+### Оновлені файли
+| Файл | Зміна |
+|---|---|
+| `src/css/features.css` | Grid 2-col → Sticky Left / Scroll Right layout |
+| `src/css/animations.css` | Початковий стан chat messages для JS-анімації |
+| `src/js/animations.js` | `initChatTyping()` — sequential reveal loop |
+| `src/index.html` | 8 блоків, нові CSS/JS link, видалено approach |
+
+### Дизайн-рішення
+- **Калькулятор:** `--color-white` фон — чорні цифри Cormorant Garamond на білому = максимальний шок-контраст. Slider: тонка лінія + золотий повзунок.
+- **Відгуки:** `--color-light` фон — теплий, довірчий тон. Структура "Проблема → Рішення → Результат" з `→` gold-акцентом.
+- **Sticky Scroll:** left-col `position: sticky`, right-col 4 items по ~50vh — перемикання мобільний: static layout.
+- **Chat Animation:** JS `async/await` + `setTimeout` loop, `prefers-reduced-motion` fallback.
+
+### Покроковий план
+- [x] **П1.** ПРОТОКОЛ СТАРТУ
+- [x] **П2.** Створити `src/css/calculator.css`
+- [x] **П3.** Створити `src/css/testimonials.css`
+- [x] **П4.** Створити `src/js/calculator.js`
+- [x] **П5.** Переписати `src/css/features.css` — sticky scroll
+- [x] **П6.** Оновити `src/css/animations.css` + `src/js/animations.js` — chat typing
+- [x] **П7.** Перебудувати `src/index.html` — 8 блоків
+- [x] **П8.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-05-27
+
+**Статус: Done**
+
+### Фактично створені / оновлені файли
+
+| Файл | Дія | Опис |
+|---|---|---|
+| `src/css/calculator.css` | НОВИЙ | Range slider (WebKit+Firefox), calc-display Cormorant 4xl, fill-track JS, responsive |
+| `src/css/testimonials.css` | НОВИЙ | 3→2→1 col grid, grayscale CSS аватари, P→S→R структура, author footer |
+| `src/js/calculator.js` | НОВИЙ | `initCalculator()`: slider input → loss calc, gold fill-track, accent flash |
+| `src/css/features.css` | ПЕРЕПИСАНО | Grid 2-col, sticky left / scroll right, gold bar ::before hover, mobile: static |
+| `src/css/animations.css` | ОНОВЛЕНО | Блок 6: `.phone-msg` initial `opacity:0`, `.is-visible` клас, reduced-motion fallback |
+| `src/js/animations.js` | ОНОВЛЕНО | `initChatTyping()`: async/await loop, typing indicator між bot-msg, 3.8s restart |
+| `src/index.html` | ПЕРЕБУДОВАНО | 8 блоків, видалено Approach, нові CSS/JS links, оновлена nav |
+
+### Архітектурні рішення
+
+**Sticky Scroll Features:**
+- `padding-block: 0` на `.features` секції — дочірні колонки керують власними відступами
+- `.features-sticky-col { position: sticky; top: calc(var(--header-height) + var(--space-8)) }` — прилипає нижче фіксованого header
+- Mobile ≤900px: `position: static`, обидві колонки у flow
+
+**Chat Typing Animation:**
+- JS-driven: `async/await` + `setTimeout`, без setInterval (щоб уникнути drift)
+- `.is-visible` клас замість inline opacity — CSS transition на класі
+- `prefers-reduced-motion`: показуємо всі повідомлення статично без анімації
+- Якщо JS не завантажився: повідомлення лишаються `opacity: 0` — але це герой-секція, завжди вгорі, завжди в DOM
+
+**Calculator:**
+- `aria-live="polite"` на `.calculator-display` — screen reader оголошує нову суму
+- `aria-valuemin/max/now` на `<input type="range">` для accessibility
+- Fill-track через inline `background` gradient (CSS-only філ слайдера без ::before tricks)
+
+### Логічні наступні кроки
+1. Відкрити `src/index.html` у браузері, перевірити всі 8 блоків
+2. Перевірити sticky scroll на desktop (Features): прокрутити повільно через секцію
+3. Перевірити chat typing animation у Hero: ~4 повідомлення → typing → restart ~8s
+4. Перетягнути calculator slider: великі цифри мають оновлюватись, fill — gold
+5. Перевірити testimonials: аватари чорно-білі (filter), P→S→R структура
+6. Mobile тест 375px: sticky → static, 3col → 1col, slider touch
+7. Перевірити form.js — валідація та webhook не змінювались
+8. Провести accessibility аудит (tab navigation, aria-labels)
+
+---
+
+## Сесія: 2026-05-27 (Правка UI — Відступи, Читабельність, Hover, Full-Screen)
+
+### Поточна задача
+Виправлення 4 проблем з відображенням: надмірні відступи, слабкий контраст тексту, hover у Features, висота секцій.
+
+### Ціль
+Зробити лендінг більш зібраним, читабельним та функціонально коректним щодо full-screen scroll.
+
+### Покроковий план
+- [x] **У1.** ПРОТОКОЛ СТАРТУ
+- [x] **У2.** `variables.css` — зменшити `--section-padding-y` (~40%), darkер текстові токени
+- [x] **У3.** `base.css` — `main > section { min-height: 100svh; display: flex; flex-direction: column; justify-content: center }`
+- [x] **У4.** `features.css` — видалити `::before` bar, новий full-card hover: bg+radius+translateY+padding
+- [x] **У5.** Секційні CSS (problems/calculator/testimonials/objections/pricing/lead-form) — gap/padding -35%, fw-light→regular, darker text
+- [x] **У6.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-05-27 (UI Fixes)
+
+**Статус: Done**
+
+### Що змінено — таблиця
+
+| Файл | Правка | Конкретна зміна |
+|---|---|---|
+| `variables.css` | 1+2 | `--section-padding-y`: `clamp(80→48px, 10→5vw, 140→96px)` |
+| `variables.css` | 2 | `--color-text-secondary`: `#4A4A4A` → `#2A2A2A` |
+| `variables.css` | 2 | `--color-text-muted`: `#888888` → `#666666` |
+| `base.css` | 4 | `main > section { min-height:100svh; display:flex; flex-direction:column; justify-content:center }` |
+| `features.css` | 3 | Видалено `::before` bar; `.feature-item:hover` → `bg rgba(255,255,255,0.04)` + `border-radius:12px` + `translateY(-4px)` + `box-shadow` |
+| `features.css` | 1+2 | Item padding `space-8→space-6 + space-5 inline`; sticky-col gap `space-7→space-5`; text opacity `0.40→0.60`, `0.45→0.65`; `fw-regular` |
+| `problems.css` | 1+2 | Container gap `space-9→space-6`; card padding `space-7→space-6`; text `fs-sm→fs-base`, `fw-regular`, `color-text-secondary→primary` |
+| `calculator.css` | 1+2 | Container gap `space-9→space-6`; display padding `space-8→space-6`; `.calc-period` `fw-light→regular`; label `fw-regular→medium`, `color-primary`; controls gap `space-6→space-5` |
+| `testimonials.css` | 1+2 | Container gap `space-9→space-6`; grid gap `clamp(32→20px)`; item gap `space-6→space-4`; problem `color-muted→secondary`; solution `color-secondary→primary`; `fw-regular` |
+| `objections.css` | 1+2 | Container gap `space-7→space-5`; col padding `space-6/8→space-5/6`; tagline `fw-light→regular`, `fs-sm→fs-base`, `color-muted→secondary` |
+| `pricing.css` | 1+2 | Container gap `space-9→space-6`; grid gap `clamp(40→24px)`; item padding `space-6→space-5`; text `fs-sm→fs-base`, `opacity 0.45→0.60`, `fw-regular` |
+| `lead-form.css` | 1 | Container gap `space-9→space-6`; wrapper `row-gap space-8→space-6`, `col-gap clamp(32→24px)` |
+
+### Логіка Правки 4 (Full-screen)
+`main > section` отримав `display:flex; flex-direction:column; justify-content:center`. Специфічність `main > section` = (0,0,2), нижча ніж `.hero` (0,1,0), тому hero зберігає своє `padding-top: header + space-8`. Решта секцій: контент вертикально центрується у `min-height:100svh`. Features: `padding-block:0` збережено, sticky-col продовжує працювати.
+
+### Логічні наступні кроки
+1. Відкрити `src/index.html` у браузері — перевірити що кожна секція = 1 екран
+2. Проскролити через Features — перевірити sticky col та hover (translateY+bg)
+3. Перевірити Calculator: контраст тексту на білому фоні, slider
+4. Перевірити мобільний 375px: centering + spacing

@@ -61,6 +61,18 @@ section {
   padding-block: var(--section-padding-y);
 }
 
+/* ── Full-screen sections ────────────────────────────────── */
+/* Кожна секція ≥ 100svh; контент центрується вертикально.
+   Перевизначається у hero.css, features.css де потрібна інша
+   логіка (header offset, sticky-scroll). */
+main > section {
+  min-height: 100svh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /* ── Typography ─────────────────────────────────────────── */
 h1, h2, h3, h4 {
   font-family: var(--font-display);
