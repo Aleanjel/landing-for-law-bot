@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Автоматизуйте запис та первинну консультацію в юридичній практиці за допомогою розумного Telegram-бота. Працює 24/7.">
+  <title>LexBot — Telegram-бот для юристів та адвокатів</title>
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles (load order matters) -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/hero.css">
+  <link rel="stylesheet" href="css/problems.css">
+  <link rel="stylesheet" href="css/calculator.css">
+  <link rel="stylesheet" href="css/features.css">
+  <link rel="stylesheet" href="css/objections.css">
+  <link rel="stylesheet" href="css/testimonials.css">
+  <link rel="stylesheet" href="css/pricing.css">
+  <link rel="stylesheet" href="css/lead-form.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- ─── Header ──────────────────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="#" class="site-logo" aria-label="LexBot — головна">Lex<span>Bot</span></a>
+      <nav class="site-nav" aria-label="Навігація сайтом">
+        <a href="#problems">Проблема</a>
+        <a href="#features">Рішення</a>
+        <a href="#testimonials">Відгуки</a>
+        <a href="#contact">Контакт</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ─── Блок 1: Hero ──────────────────────────────────── -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="container">
+
+        <div class="hero-content">
+          <span class="section-label">Для юристів та адвокатів</span>
+          <h1 class="hero-title" id="hero-title">
+            Ви в суді або на зустрічі, а ваші клієнти&nbsp;йдуть до&nbsp;<em>конкурентів?</em>
+          </h1>
+          <p class="hero-subtitle">
+            Автоматизуйте запис та первинну консультацію за допомогою розумного Telegram-бота.
+            Працює 24/7. Збирає ліди, поки ви зайняті справами.
+          </p>
+          <div class="hero-cta-group">
+            <a href="#contact" class="btn btn-primary">Протестувати бота безкоштовно</a>
+            <span class="hero-note">Без прив'язки картки</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="phone-tilt-wrapper">
+          <div class="phone-mockup">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="phone-tg-header">
+                <div class="phone-tg-avatar">Ю</div>
+                <div class="phone-tg-info">
+                  <span class="phone-tg-name">Юридичний Асистент</span>
+                  <span class="phone-tg-status">онлайн</span>
+                </div>
+              </div>
+              <div class="phone-chat">
+                <div class="phone-msg phone-msg--bot">
+                  Вітаю! Я — ваш юридичний асистент. Опишіть ситуацію, і я допоможу.
+                </div>
+                <div class="phone-msg phone-msg--user">
+                  Мені потрібна консультація щодо трудового спору
+                </div>
+                <div class="phone-msg phone-msg--bot">
+                  Зрозумів. Трудові спори — моя спеціалізація. Давайте уточнимо кілька деталей…
+                </div>
+                <div class="phone-msg phone-msg--bot">
+                  Оберіть зручний час для дзвінка з адвокатом:
+                </div>
+                <div class="phone-msg phone-msg--bot typing" aria-label="Бот друкує">
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                  <span class="typing-dot"></span>
+                </div>
+              </div>
+              <div class="phone-input-bar">
+                <div class="phone-input-field"><span>Повідомлення…</span></div>
+                <div class="phone-send-btn" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div><!-- /.phone-tilt-wrapper -->
+        </div>
+
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-line"></div>
+        <span>Scroll</span>
+      </div>
+    </section>
+
+    <!-- ─── Блок 2: Проблематика ───────────────────────────── -->
+    <section class="problems" id="problems" aria-labelledby="problems-title">
+      <div class="container">
+
+        <div class="problems-header reveal">
+          <span class="section-label">Реальна проблема</span>
+          <h2 id="problems-title">
+            Чому приватна практика щомісяця втрачає до&nbsp;30% потенційного доходу?
+          </h2>
+        </div>
+
+        <div class="problems-grid">
+
+          <article class="problem-card reveal reveal-d1">
+            <span class="problem-card-index" aria-hidden="true">01</span>
+            <h3 class="problem-card-title">Засідання та&nbsp;зустрічі</h3>
+            <p class="problem-card-text">
+              Ваш телефон на беззвучному. Клієнт телефонує, не отримує відповіді і&nbsp;шукає іншого адвоката.
+            </p>
+          </article>
+
+          <article class="problem-card reveal reveal-d2">
+            <span class="problem-card-index" aria-hidden="true">02</span>
+            <h3 class="problem-card-title">Неробочий час</h3>
+            <p class="problem-card-text">
+              Юридичні проблеми часто стаються ввечері або на вихідних. Ви відпочиваєте — клієнт чекає.
+            </p>
+          </article>
+
+          <article class="problem-card reveal reveal-d3">
+            <span class="problem-card-index" aria-hidden="true">03</span>
+            <h3 class="problem-card-title">Рутина замість&nbsp;практики</h3>
+            <p class="problem-card-text">
+              Ви витрачаєте години на однотипні відповіді та погодження часу консультації замість того, щоб займатися безпосередньо справою.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Блок 3: Калькулятор ───────────────────────────── -->
+    <section class="calculator" id="calculator" aria-labelledby="calculator-title">
+      <div class="container">
+
+        <div class="calculator-header reveal">
+          <span class="section-label">Калькулятор</span>
+          <h2 id="calculator-title">Скільки ви втрачаєте щомісяця?</h2>
+        </div>
+
+        <div class="calculator-display reveal reveal-d1" aria-live="polite" aria-atomic="true">
+          <span class="calc-prefix">Ви втрачаєте</span>
+          <div class="calc-result">
+            <span class="calc-amount" id="calc-amount">$300</span>
+            <span class="calc-period">щомісяця</span>
+          </div>
+        </div>
+
+        <div class="calculator-controls reveal reveal-d2">
+          <div class="calc-slider-wrap">
+            <label class="calc-label" for="calc-clients">
+              Кількість втрачених клієнтів на місяць
+              <span class="calc-value-display" id="calc-value-display">3</span>
+            </label>
+            <input
+              type="range"
+              id="calc-clients"
+              min="1"
+              max="50"
+              value="3"
+              class="calc-slider"
+              aria-label="Кількість втрачених клієнтів на місяць"
+              aria-valuemin="1"
+              aria-valuemax="50"
+              aria-valuenow="3"
+            >
+            <div class="calc-slider-markers" aria-hidden="true">
+              <span>1</span>
+              <span>25</span>
+              <span>50</span>
+            </div>
+          </div>
+
+          <div class="calc-fixed">
+            <span class="calc-fixed-label">Фіксований середній чек консультації</span>
+            <span class="calc-fixed-value">$100</span>
+          </div>
+        </div>
+
+        <div class="calculator-cta reveal reveal-d3">
+          <a href="#contact" class="btn btn-dark">Підключити бота та зупинити втрати</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Блок 4: Функціонал — Sticky Scroll ───────────── -->
+    <section class="features" id="features" aria-labelledby="features-title">
+      <div class="container">
+
+        <!-- Left: Sticky column -->
+        <div class="features-sticky-col">
+          <div class="features-header reveal">
+            <span class="section-label section-label--light">Можливості</span>
+            <h2 id="features-title">Ваш персональний цифровий асистент, який ніколи не спить.</h2>
+          </div>
+          <p class="features-desc reveal reveal-d1">
+            Чотири ключові інструменти, що автоматизують рутину та збільшують кількість ваших платних консультацій — без додаткових витрат на персонал.
+          </p>
+          <a href="#contact" class="btn btn-primary reveal reveal-d2">Почати безкоштовно</a>
+        </div>
+
+        <!-- Right: Scrolling column -->
+        <div class="features-scroll-col">
+          <div class="features-list" role="list">
+
+            <div class="feature-item reveal" role="listitem">
+              <span class="feature-num" aria-label="01">01</span>
+              <h3 class="feature-title">
+                AI-Консультант
+                <span class="feature-tag">Лід-магніт</span>
+              </h3>
+              <p class="feature-text">
+                Бот проводить первинне опитування, відповідає на базові питання за допомогою ШІ та екологічно підводить людину до запису на платну консультацію.
+              </p>
+            </div>
+
+            <div class="feature-item reveal reveal-d1" role="listitem">
+              <span class="feature-num" aria-label="02">02</span>
+              <h3 class="feature-title">Автоматичний запис</h3>
+              <p class="feature-text">
+                Клієнт сам обирає вільний слот. Заявка миттєво фіксується у вашій Google Таблиці або приходить вам в особисті повідомлення.
+              </p>
+            </div>
+
+            <div class="feature-item reveal reveal-d2" role="listitem">
+              <span class="feature-num" aria-label="03">03</span>
+              <h3 class="feature-title">Документи під&nbsp;ключ</h3>
+              <p class="feature-text">
+                Можливість для клієнта замовити розробку документа або купити готовий шаблон — договори, скарги — прямо в&nbsp;Telegram.
+              </p>
+            </div>
+
+            <div class="feature-item reveal reveal-d3" role="listitem">
+              <span class="feature-num" aria-label="04">04</span>
+              <h3 class="feature-title">Цифрова візитка компанії</h3>
+              <p class="feature-text">
+                Інформація про ваші послуги, експертність та прайс завжди під рукою у клієнта. Перший крок до довіри ще до дзвінка.
+              </p>
+            </div>
+
+          </div>
+        </div><!-- /.features-scroll-col -->
+
+      </div>
+    </section>
+
+    <!-- ─── Блок 5: Versus ───────────────────────────────── -->
+    <section class="objections" id="objections" aria-label="Порівняння сценаріїв">
+      <div class="container">
+
+        <span class="section-label reveal">Порівняння</span>
+
+        <div class="versus-grid" role="presentation">
+
+          <div class="versus-col versus-col--without reveal">
+            <span class="versus-label">Без асистента</span>
+            <p class="versus-result">Втрачений лід<br>о&nbsp;21:00</p>
+          </div>
+
+          <div class="versus-divider" aria-hidden="true"></div>
+
+          <div class="versus-col versus-col--with reveal reveal-d1">
+            <span class="versus-label">З ШІ-асистентом</span>
+            <p class="versus-result">Готова зустріч<br>на&nbsp;09:00</p>
+          </div>
+
+        </div>
+
+        <p class="objections-tagline reveal reveal-d2">
+          Одна збережена консультація окупає місяць роботи бота.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- ─── Блок 6: Відгуки ───────────────────────────────── -->
+    <section class="testimonials" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+
+        <div class="testimonials-header reveal">
+          <span class="section-label">Результати</span>
+          <h2 id="testimonials-title">Як змінилась практика наших клієнтів</h2>
+        </div>
+
+        <div class="testimonials-grid">
+
+          <article class="testimonial-item reveal">
+            <div class="testimonial-avatar testimonial-avatar--1" aria-hidden="true">А</div>
+            <blockquote class="testimonial-body">
+              <p class="testimonial-problem">
+                Щотижня я міг не взяти слухавку 5–7 разів під час засідань. Клієнти не чекали і йшли до іншого адвоката.
+              </p>
+              <p class="testimonial-solution">
+                Після підключення LexBot весь первинний контакт автоматизовано: бот приймає запит, ставить уточнюючі питання та пропонує вільні слоти.
+              </p>
+              <p class="testimonial-result">
+                +18 нових консультацій за перший місяць, нуль пропущених лідів.
+              </p>
+              <footer class="testimonial-author">
+                <strong class="testimonial-name">Андрій Коваль</strong>
+                <span class="testimonial-role">Адвокат, Київ · Трудове право</span>
+              </footer>
+            </blockquote>
+          </article>
+
+          <article class="testimonial-item reveal reveal-d1">
+            <div class="testimonial-avatar testimonial-avatar--2" aria-hidden="true">О</div>
+            <blockquote class="testimonial-body">
+              <p class="testimonial-problem">
+                Ми — команда з 4 юристів. Адміністратор витрачав 3 години щодня лише на первинну обробку запитів і розподіл справ між партнерами.
+              </p>
+              <p class="testimonial-solution">
+                Бот сам кваліфікує запит, визначає напрямок і передає заявку профільному партнеру з повним контекстом ситуації.
+              </p>
+              <p class="testimonial-result">
+                Скорочення часу на адмін з 3 год/день до 40 хв. ROI за 6 тижнів.
+              </p>
+              <footer class="testimonial-author">
+                <strong class="testimonial-name">Олена Мартиненко</strong>
+                <span class="testimonial-role">Управляючий партнер · Корпоративне право</span>
+              </footer>
+            </blockquote>
+          </article>
+
+          <article class="testimonial-item reveal reveal-d2">
+            <div class="testimonial-avatar testimonial-avatar--3" aria-hidden="true">В</div>
+            <blockquote class="testimonial-body">
+              <p class="testimonial-problem">
+                Моя практика — виключно M&A угоди з чеком від $5000. Я отримував десятки нерелевантних звернень і витрачав час на їх відсів.
+              </p>
+              <p class="testimonial-solution">
+                LexBot проводить глибокий брифінг ще до моєї участі: виявляє бюджет, строки, тип угоди. Нецільові запити відсіваються автоматично.
+              </p>
+              <p class="testimonial-result">
+                Конверсія первинного контакту в угоду зросла з 12% до 31%.
+              </p>
+              <footer class="testimonial-author">
+                <strong class="testimonial-name">Василь Петренко</strong>
+                <span class="testimonial-role">Адвокат · M&amp;A та корпоративні угоди</span>
+              </footer>
+            </blockquote>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Блок 7: Цільова аудиторія ───────────────────── -->
+    <section class="audience" id="pricing" aria-labelledby="audience-title">
+      <div class="container">
+
+        <div class="audience-header reveal">
+          <span class="section-label section-label--light">Цільова аудиторія</span>
+          <h2 id="audience-title">Для кого ми створюємо цифрові рішення?</h2>
+        </div>
+
+        <div class="audience-grid" role="list">
+
+          <div class="audience-item reveal" role="listitem">
+            <span class="audience-num" aria-label="01">01</span>
+            <h3 class="audience-category">Приватні адвокати</h3>
+            <p class="audience-text">
+              Для спеціалістів, чий графік розписаний похвилинно. Бот автоматизує первинний запис та втримає клієнта, поки ви в суді.
+            </p>
+          </div>
+
+          <div class="audience-item reveal reveal-d1" role="listitem">
+            <span class="audience-num" aria-label="02">02</span>
+            <h3 class="audience-category">Юридичні компанії</h3>
+            <p class="audience-text">
+              Для команд, яким потрібен розумний фільтр. ШІ-асистент кваліфікує ліда та миттєво передасть інформацію профільному партнеру.
+            </p>
+          </div>
+
+          <div class="audience-item reveal reveal-d2" role="listitem">
+            <span class="audience-num" aria-label="03">03</span>
+            <h3 class="audience-category">Вузькопрофільні експерти</h3>
+            <p class="audience-text">
+              Для фахівців із високим чеком. Бот проведе глибинний первинний брифінг та відсіє нецільові звернення ще до вашої участі.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ─── Блок 8: Lead Form ──────────────────────────────── -->
+    <section class="lead-form-section" id="contact" aria-labelledby="form-title">
+      <div class="container">
+
+        <div class="lead-form-header reveal">
+          <span class="section-label section-label--light">Залишити заявку</span>
+          <h2 id="form-title">Готові делегувати рутину штучному інтелекту?</h2>
+          <p>
+            Залиште заявку, і ми безкоштовно розробимо чорнову логіку бота спеціально для вашої юридичної практики.
+          </p>
+        </div>
+
+        <form class="lead-form-wrapper reveal reveal-d2" id="lead-form" novalidate aria-label="Форма зворотного зв'язку">
+
+          <!-- Рядок 1: ПІБ (col 1) + Телефон (col 2) -->
+          <div class="form-group">
+            <label for="field-fullname" class="form-label">ПІБ</label>
+            <input
+              type="text"
+              id="field-fullname"
+              name="fullname"
+              class="form-input"
+              placeholder="Коваленко Олександр Іванович"
+              autocomplete="name"
+              required
+            >
+            <span class="form-error" data-error="fullname" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="field-phone" class="form-label">Номер телефону</label>
+            <input
+              type="tel"
+              id="field-phone"
+              name="phone"
+              class="form-input"
+              placeholder="+38 (0__) ___-__-__"
+              autocomplete="tel"
+              inputmode="numeric"
+              required
+            >
+            <span class="form-error" data-error="phone" role="alert" aria-live="polite"></span>
+          </div>
+
+          <!-- Рядок 2: Email (col 1) + Telegram (col 2) — за бажанням -->
+          <div class="form-group">
+            <label for="field-email" class="form-label">
+              Email <span class="form-optional">(за бажанням)</span>
+            </label>
+            <input
+              type="email"
+              id="field-email"
+              name="email"
+              class="form-input"
+              placeholder="name@lawfirm.ua"
+              autocomplete="email"
+            >
+            <span class="form-error" data-error="email" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="field-telegram" class="form-label">
+              Telegram <span class="form-optional">(за бажанням)</span>
+            </label>
+            <input
+              type="text"
+              id="field-telegram"
+              name="telegram"
+              class="form-input"
+              placeholder="@username"
+              autocomplete="off"
+            >
+            <span class="form-error" data-error="telegram" role="alert" aria-live="polite"></span>
+          </div>
+
+          <!-- Рядок 3: Кнопка -->
+          <div class="form-submit-row">
+            <button type="submit" class="form-submit" aria-label="Надіслати заявку">
+              Зв'яжіться з нами
+            </button>
+          </div>
+
+          <p class="form-privacy">
+            Надсилаючи форму, ви погоджуєтесь на обробку персональних даних. Ваша інформація в безпеці.
+          </p>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── Footer ────────────────────────────────────────────── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <p>© 2026 LexBot. Усі права захищені.</p>
+      <p>Зроблено для юристів, які цінують свій час.</p>
+    </div>
+  </footer>
+
+  <script src="js/calculator.js"></script>
+  <script src="js/form.js"></script>
+  <script src="js/animations.js"></script>
+</body>
+</html>
