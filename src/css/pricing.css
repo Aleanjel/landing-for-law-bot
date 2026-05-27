@@ -34,13 +34,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  padding-top: var(--space-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.10);
-  transition: border-color var(--transition);
+  padding: var(--space-5);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  transition: border-color var(--transition), background var(--transition);
 }
 
 .audience-item:hover {
-  border-top-color: rgba(200, 169, 110, 0.40);
+  border-color: rgba(200, 169, 110, 0.40);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* ── Serial Number ───────────────────────────────────────── */
@@ -80,14 +83,9 @@
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 768px) {
   .audience-grid {
     grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .audience-item {
-    padding-block: var(--space-6);
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    gap: var(--space-4);
   }
 }

@@ -30,13 +30,16 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding-top: var(--space-5);
-  border-top: 1px solid rgba(0, 0, 0, 0.10);
-  transition: border-color var(--transition);
+  padding: var(--space-6);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .testimonial-item:hover {
-  border-top-color: rgba(0, 0, 0, 0.28);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* ── CSS Avatar (grayscale studio portrait placeholder) ──── */
@@ -116,7 +119,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-1);
-  padding-top: var(--space-5);
+  padding-top: var(--space-4);
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   margin-top: auto;
 }
@@ -151,9 +154,10 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .testimonials-grid {
     grid-template-columns: 1fr;
+    gap: var(--space-4);
   }
 
   .testimonial-item:last-child {

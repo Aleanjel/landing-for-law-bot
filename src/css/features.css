@@ -58,6 +58,7 @@
 .features-list {
   display: flex;
   flex-direction: column;
+  gap: var(--space-3);
 }
 
 /* ── Feature Item ────────────────────────────────────────── */
@@ -65,9 +66,9 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  /* Внутрішній padding — текст не торкається країв виділення */
   padding: var(--space-6) var(--space-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.10);
   border-radius: 12px;
   position: relative;
   transition:
@@ -79,9 +80,8 @@
 
 /* Full card highlight on hover */
 .feature-item:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-top-color: rgba(200, 169, 110, 0.35);
-  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(200, 169, 110, 0.35);
   transform: translateY(-4px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
 }
@@ -161,6 +161,10 @@
 /* ── Responsive: mobile ──────────────────────────────────── */
 @media (max-width: 480px) {
   .feature-item {
-    padding-block: var(--space-6);
+    padding: var(--space-5);
+  }
+
+  .features-list {
+    gap: var(--space-3);
   }
 }

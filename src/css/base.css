@@ -9,6 +9,9 @@ html {
   font-size: 16px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -20,7 +23,10 @@ body {
   background-color: var(--color-white);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  max-width: 100%;
   overflow-x: hidden;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 img, video, svg {
@@ -79,6 +85,7 @@ h1, h2, h3, h4 {
   font-weight: var(--fw-semibold);
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-4);
 }
 
 h1 { font-size: var(--fs-hero); }
@@ -89,6 +96,10 @@ h4 { font-size: var(--fs-lg); }
 p {
   line-height: var(--lh-loose);
   color: var(--color-text-secondary);
+}
+
+p:not(:last-child) {
+  margin-bottom: var(--space-3);
 }
 
 .section-label {
@@ -165,6 +176,20 @@ p {
 @media (max-width: 768px) {
   .site-nav {
     display: none;
+  }
+
+  /* Allow sections taller than viewport to scroll naturally */
+  main > section {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  h1, h2 {
+    line-height: 1.2;
+  }
+
+  p {
+    line-height: 1.6;
   }
 }
 

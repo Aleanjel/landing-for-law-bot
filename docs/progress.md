@@ -582,3 +582,196 @@ src/
 2. Проскролити через Features — перевірити sticky col та hover (translateY+bg)
 3. Перевірити Calculator: контраст тексту на білому фоні, slider
 4. Перевірити мобільний 375px: centering + spacing
+
+---
+
+## Сесія: 2026-05-27 (Mobile Adaptation — всі 8 блоків)
+
+### Поточна задача
+Реалізувати бездоганну мобільну адаптацію для всіх 8 блоків лендінгу: жоден елемент не перекриває інший, текст не обрізається, дизайн залишається преміальним на будь-якому смартфоні.
+
+### Ціль
+- Глобальний mobile type scale (768px + 480px): H1/H2 32–40px на мобільному
+- Всі multi-column grid → 1fr при <768px
+- Full-screen scroll fix: `height: auto` на мобільному (контент не обрізається)
+- Hero: 2-col → 1-col; phone mockup прихований на 480px
+- Touch targets: `.btn` та `.form-input` `min-height: 48px`; `:active` feedback states
+- Slider thumb 28px для зручного touch
+
+### Застосовані скіли
+- `ui ux pro max.md` — Touch targets ≥48px, tap highlight, mobile type scale
+
+### Покроковий план
+- [x] **М1.** ПРОТОКОЛ СТАРТУ (цей запис)
+- [ ] **М2.** `variables.css` — `@media (max-width: 768px/480px)` type scale + spacing overrides
+- [ ] **М3.** `base.css` — `height: auto` mobile override, `line-height` tight, `-webkit-tap-highlight-color`
+- [ ] **М4.** `hero.css` — `padding-top` at 768px, приховати `.hero-visual` та `.hero-scroll` at 480px
+- [ ] **М5.** `components.css` — `min-height: 48px`, `:active`, `touch-action: manipulation`
+- [ ] **М6.** `testimonials.css` — breakpoint 640px → 768px для 1-col
+- [ ] **М7.** `pricing.css` — breakpoint 560px → 768px для 1-col
+- [ ] **М8.** `calculator.css` — `calc-amount` font-size override, slider thumb 28px
+- [x] **М2.** `variables.css` — `@media (max-width: 768px/480px)` type scale + spacing overrides
+- [x] **М3.** `base.css` — `height: auto` mobile override, `line-height` tight, `-webkit-tap-highlight-color`
+- [x] **М4.** `hero.css` — `padding-top` at 768px, приховати `.hero-visual` та `.hero-scroll` at 480px
+- [x] **М5.** `components.css` — `min-height: 48px`, `:active`, `touch-action: manipulation`
+- [x] **М6.** `testimonials.css` — breakpoint 640px → 768px для 1-col
+- [x] **М7.** `pricing.css` — breakpoint 560px → 768px для 1-col
+- [x] **М8.** `calculator.css` — `calc-amount` font-size override, slider thumb 28px
+- [x] **М9.** `lead-form.css` — `min-height: 48px` для `.form-input`, `:active` для submit, breakpoint 640px → 768px
+- [x] **М10.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-05-27 (Mobile Adaptation)
+
+**Статус: Done**
+
+### Фактично змінені файли
+
+| Файл | Зміна |
+|---|---|
+| `variables.css` | Додано `@media (max-width: 768px)` + `480px`: override `--fs-hero/3xl/4xl/2xl` до мобільних значень, `--section-padding-y` менший, `--container-padding: 20px` |
+| `base.css` | `-webkit-tap-highlight-color: transparent` на `html`; `@media (max-width: 768px)`: `height: auto` + `min-height: 100svh` на `main > section`, `line-height: 1.2` для h1/h2, `1.6` для p |
+| `hero.css` | Додано `@media (max-width: 768px)`: менший `padding-top`; `@media (max-width: 480px)`: `display: none` для `.hero-visual` та `.hero-scroll` (фокус на UTP+CTA), прибрано старий розмір phone на 480px |
+| `components.css` | `.btn`: `min-height: 48px`, `touch-action: manipulation`, `:active` → `transform: scale(0.97)` |
+| `testimonials.css` | Breakpoint 1-col: 640px → 768px |
+| `pricing.css` | Breakpoint 1-col: 560px → 768px (після існуючого 900px→2col) |
+| `calculator.css` | `@media (max-width: 768px)`: `calc-amount` → `clamp(2rem, 10vw, 3rem)`, slider thumb 28×28px, track `height: 2px` з `padding-block: 10px` |
+| `lead-form.css` | `.form-input`: `padding: 14px 0`, `min-height: 48px`, `touch-action: manipulation`; `.form-submit:active` → `scale(0.98)`; breakpoint 1-col: 640px → 768px |
+
+### Mobile breakpoint map (фінальний стан)
+
+| Блок | 768px | 480px |
+|---|---|---|
+| Hero | padding-top менший | phone + scroll indicator приховані |
+| Problems | вже 1-col при ≤900px ✓ | — |
+| Calculator | calc-amount менший, slider thumb 28px, cta стовпець | label flex-column |
+| Features | вже static при ≤900px ✓ | — |
+| Objections | вже 1-col при ≤768px ✓ | padding 0 |
+| Testimonials | 1-col ← було 640px | — |
+| Audience | 1-col ← було 560px | — |
+| Lead Form | 1-col ← було 640px | toast edge padding |
+
+### Логічні наступні кроки
+1. Відкрити `src/index.html` на реальному телефоні або DevTools 375px
+2. Перевірити Hero: тільки текст + CTA кнопка (phone прихований на 480px)
+3. Перевірити Calculator slider: великий thumb 28px, зручний drag
+4. Перевірити Lead Form: 1-col на 375px, поля ≥48px tap target
+5. Перевірити `:active` feedback на кнопках та submit
+
+---
+
+## Сесія: 2026-05-27 (Horizontal Overflow Fix)
+
+### Поточна задача
+Усунути горизонтальний скрол на мобільних екранах — елементи не поміщаються в ширину.
+
+### Root-cause аналіз
+| Проблема | Файл | Деталь |
+|---|---|---|
+| `html` без `overflow-x: hidden` + `max-width: 100%` | `base.css` | iOS Safari ігнорує `overflow-x` на `body` якщо `html` не обмежено |
+| `width: calc(100vw - 64px)` в toast | `lead-form.css` | `100vw` включає ширину скролбара → ширший за viewport |
+| `.phone-mockup` без `max-width: 100%` | `components.css` | Фіксована ширина 260px може переповнювати вузькі контейнери |
+| Відсутній `overflow-wrap: break-word` | `base.css` | Довгі слова/URL розривають контейнери |
+
+### Покроковий план
+- [x] **О1.** ПРОТОКОЛ СТАРТУ
+- [x] **О2.** `base.css` — `html/body: max-width: 100%; overflow-x: hidden` + `overflow-wrap: break-word`
+- [x] **О3.** `lead-form.css` — `100vw` → `100%` в toast
+- [x] **О4.** `components.css` — `max-width: 100%` для `.phone-mockup`
+- [x] **О5.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-05-27 (Horizontal Overflow Fix)
+
+**Статус: Done**
+
+### Фактично змінені файли
+
+| Файл | Зміна | Ефект |
+|---|---|---|
+| `base.css` | `html` + `body`: `max-width: 100%; overflow-x: hidden` | Подвійна блокада overflow — iOS Safari поважає лише коли обидва встановлені |
+| `base.css` | `body`: `overflow-wrap: break-word; word-break: break-word` | Довгі слова/URL не розривають контейнери |
+| `lead-form.css` | `width: calc(100vw - 64px)` → `calc(100% - 64px)` (toast) | `100vw` > viewport на десктопі зі скролбаром |
+| `lead-form.css` | `width: calc(100vw - 32px)` → `calc(100% - 32px)` (toast 480px) | Те саме для мобільного breakpoint |
+| `components.css` | `.phone-mockup`: `max-width: 100%` | Захист від переповнення у вузьких контейнерах |
+
+### Перевірені та безпечні елементи
+- `.hero::before/.hero::after` — батько `.hero { overflow: hidden }` ✓
+- `.lead-form-section::before` — батько `overflow: hidden` ✓
+- `.hero-scroll { left: 50%; transform: translateX(-50%) }` — центрований ✓
+- `.btn-primary/accent::after` shimmer — батько `overflow: hidden` ✓
+- `.problem-card-index { position: absolute; right: 24px }` — 2 символи ≈ 80px, в картці ≥335px ✓
+
+### Логічні наступні кроки
+1. Перевірити у DevTools 375px: Overflow Inspector → нуль червоних рамок
+2. Протестувати реальний пристрій iOS Safari (найбільш вибагливий до overflow)
+3. Перевірити Desktop з системним скролбаром — toast не повинен виходити за edge
+
+---
+
+## Сесія: 2026-05-27 (Card Redesign + Text Overlap Fix)
+
+### Поточна задача
+Усунути накладання тексту та стилізувати пункти у 4 блоках (Проблематика, Функціонал, Відгуки, Цільова аудиторія) у вигляді преміальних мінімалістичних карток.
+
+### Root-cause аналіз
+| Проблема | Файл / Клас | Деталь |
+|---|---|---|
+| Відсутній глобальний margin-bottom для h2/h3 | `base.css` | Заголовки прилипають до наступного елементу |
+| `.audience-item`: gap: 0 на мобільному | `pricing.css` | Картки без відступу між собою |
+| `.testimonial-item`: тільки border-top, без padding по боках | `testimonials.css` | Контент впирається в краї |
+| `.feature-item`, `.audience-item`: лише border-top, без повної рамки | обидва файли | Немає візуальної ізоляції картки |
+| `.problem-card`: немає border-radius, немає full border | `problems.css` | Відсутня "картка" на мобільному |
+
+### Дизайн-рішення
+- **Темний фон** (features, audience): `border: 1px solid rgba(255,255,255,0.10)` + bg `rgba(255,255,255,0.03)`
+- **Світлий фон** (problems, testimonials): `border: 1px solid rgba(0,0,0,0.08)` + bg `rgba(0,0,0,0.02)` (problems: bg вже `--color-white`, залишити)
+- **Border-radius**: 8px — сумісно з overall мінімалістичним стилем
+- **Gap мобільний**: 16px (`var(--space-4)`) між картками
+
+### Покроковий план
+- [x] **К1.** ПРОТОКОЛ СТАРТУ
+- [x] **К2.** `base.css` — глобальний `margin-bottom` для h2/h3, `p:not(:last-child) { margin-bottom }`
+- [x] **К3.** `problems.css` — full border + border-radius на `.problem-card`
+- [x] **К4.** `features.css` — full border + bg на `.feature-item`, gap між items
+- [x] **К5.** `testimonials.css` — full card redesign для `.testimonial-item`
+- [x] **К6.** `pricing.css` — full card redesign для `.audience-item`, gap на мобільному
+- [x] **К7.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-05-27 (Card Redesign + Text Overlap Fix)
+
+**Статус: Done**
+
+### Фактично змінені файли
+
+| Файл | Клас | До | Після |
+|---|---|---|---|
+| `base.css` | `h1/h2/h3/h4` | без margin-bottom | `margin-bottom: var(--space-4)` (перевизначається секційними стилями) |
+| `base.css` | `p:not(:last-child)` | без margin-bottom | `margin-bottom: var(--space-3)` |
+| `problems.css` | `.problem-card` | `border-left: 2px`, без radius | `border: 1px solid rgba(0,0,0,0.08)` + `border-left: 2px` + `border-radius: 8px` |
+| `problems.css` | `:hover` | `border-color` accent | `border-left-color` accent + `box-shadow` |
+| `features.css` | `.features-list` | без gap | `gap: var(--space-3)` |
+| `features.css` | `.feature-item` | тільки `border-top` | `border: 1px solid rgba(255,255,255,0.10)` + `background: rgba(255,255,255,0.02)` |
+| `features.css` | `.feature-item:hover` | `border-top-color` | `border-color` (full) |
+| `testimonials.css` | `.testimonial-item` | `padding-top` + `border-top` | `padding: var(--space-6)` + full `border` + `border-radius: 8px` + `background` |
+| `testimonials.css` | `@768px grid gap` | не задано | `gap: var(--space-4)` = 16px |
+| `pricing.css` | `.audience-item` | `padding-top` + `border-top` | `padding: var(--space-5)` + full `border` + `border-radius: 8px` + `background` |
+| `pricing.css` | `@768px grid` | `gap: 0` | `gap: var(--space-4)` = 16px |
+
+### Колірна система карток
+| Фон секції | Border | Background картки |
+|---|---|---|
+| `--color-white` (problems) | `rgba(0,0,0,0.08)` | `var(--color-white)` — вже контрастна до `--color-light` |
+| `--color-dark` (features, audience) | `rgba(255,255,255,0.10)` | `rgba(255,255,255,0.02-0.03)` |
+| `--color-light` (testimonials) | `rgba(0,0,0,0.08)` | `rgba(0,0,0,0.02)` |
+
+### Логічні наступні кроки
+1. Перевірити Problems: картки мають рамку + border-radius + золотий лівий акцент при hover
+2. Перевірити Features: всі items мають рівну рамку, при наведенні gold border
+3. Перевірити Testimonials: картки з padding 32px всередині, граційний hover shadow
+4. Перевірити Audience: картки з рамкою, 16px gap між ними на мобільному
+5. Перевірити що `margin-bottom` на h2 не ламає секції з `margin-bottom: 0` override

@@ -28,14 +28,18 @@
 .problem-card {
   padding: var(--space-6) var(--space-5);
   background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-left: 2px solid var(--color-dark);
+  border-radius: 8px;
   position: relative;
-  transition: border-color var(--transition), transform var(--transition);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .problem-card:hover {
-  border-color: var(--color-accent);
+  border-color: rgba(0, 0, 0, 0.14);
+  border-left-color: var(--color-accent);
   transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
 }
 
 .problem-card-index {
@@ -88,6 +92,10 @@
   .problems-grid {
     grid-template-columns: 1fr;
     gap: var(--space-4);
+  }
+
+  .problem-card-title {
+    margin-bottom: var(--space-3);
   }
 }
 

@@ -206,6 +206,10 @@
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .calc-amount {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
   .calc-result {
     flex-direction: column;
     gap: var(--space-2);
@@ -219,6 +223,21 @@
   .calculator-cta .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .calc-slider::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+  }
+
+  .calc-slider::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+  }
+
+  .calc-slider {
+    height: 2px;
+    padding-block: 10px;
   }
 }
 
