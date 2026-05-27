@@ -1,0 +1,120 @@
+/* ── Блок 5: Підхід ─────────────────────────────────────── */
+.approach {
+  background-color: var(--color-light);
+}
+
+.approach .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.approach-header {
+  max-width: 560px;
+}
+
+.approach-header h2 {
+  color: var(--color-dark);
+  margin-bottom: var(--space-4);
+}
+
+/* ── Items ───────────────────────────────────────────────── */
+.approach-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.approach-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(0, 0, 0, 0.10);
+  transition: border-color var(--transition);
+}
+
+.approach-item:hover {
+  border-top-color: var(--color-accent);
+}
+
+.approach-num {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: var(--fw-light);
+  line-height: 1;
+  color: var(--color-dark);
+  opacity: 0.12;
+  letter-spacing: var(--ls-tight);
+  user-select: none;
+  transition: opacity var(--transition);
+}
+
+.approach-item:hover .approach-num {
+  opacity: 0.22;
+}
+
+.approach-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.approach-title {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-semibold);
+  color: var(--color-dark);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+}
+
+.approach-text {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-loose);
+  color: var(--color-text-secondary);
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .approach-list {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .approach-item {
+    flex-direction: row;
+    gap: var(--space-6);
+    align-items: flex-start;
+    padding-top: 0;
+    padding-left: var(--space-6);
+    border-top: none;
+    border-left: 1px solid rgba(0, 0, 0, 0.10);
+  }
+
+  .approach-item:hover {
+    border-top-color: transparent;
+    border-left-color: var(--color-accent);
+  }
+
+  .approach-num {
+    font-size: 2.5rem;
+    opacity: 0.15;
+    flex-shrink: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .approach-item {
+    flex-direction: column;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.10);
+    padding-top: var(--space-5);
+  }
+
+  .approach-item:hover {
+    border-left-color: transparent;
+    border-top-color: var(--color-accent);
+  }
+}
