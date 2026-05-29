@@ -97,7 +97,7 @@
     --fs-2xl:  clamp(1.375rem, 6vw, 1.75rem);
 
     --section-padding-y: clamp(40px, 5vw, 64px);
-    --container-padding: 20px;
+    --container-padding: 24px;
   }
 }
 
