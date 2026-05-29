@@ -176,13 +176,17 @@
   }
 }
 
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: clamp(1.625rem, 10vw, 2rem);
-  }
-
+@media (max-width: 640px) {
   .hero-visual,
   .hero-scroll {
     display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.625rem, 10vw, 2rem);
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }

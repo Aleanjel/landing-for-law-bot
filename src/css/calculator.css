@@ -223,6 +223,9 @@
   .calculator-cta .btn {
     width: 100%;
     justify-content: center;
+    white-space: normal;
+    line-height: var(--lh-snug);
+    padding: 14px 20px;
   }
 
   .calc-slider::-webkit-slider-thumb {
