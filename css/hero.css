@@ -1,0 +1,203 @@
+/* ── Блок 1: Hero ───────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  background-color: var(--color-hero-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: calc(var(--header-height) + var(--space-8));
+  padding-bottom: var(--space-10);
+}
+
+/* Subtle radial glow — top-left */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -5%;
+  width: 60%;
+  height: 70%;
+  background: radial-gradient(ellipse at center, rgba(200, 169, 110, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Bottom gradient fade into next section */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(13, 27, 42, 0.4));
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: clamp(24px, 4vw, 40px);
+  text-align: center;
+}
+
+/* ── Text column ─────────────────────────────────────────── */
+.hero-content {
+  max-width: 100%;
+}
+
+.hero-content .section-label {
+  margin-bottom: var(--space-5);
+}
+
+.hero-title {
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-tight);
+  color: var(--color-text-white);
+  margin-bottom: var(--space-6);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-light);
+  line-height: var(--lh-loose);
+  color: var(--color-text-white-dim);
+  margin-bottom: var(--space-8);
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.hero-cta-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.hero-note {
+  font-size: var(--fs-xs);
+  color: rgba(255, 255, 255, 0.30);
+  letter-spacing: var(--ls-wide);
+}
+
+/* ── Phone column ────────────────────────────────────────── */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  order: -1;
+}
+
+.phone-mockup {
+  width: 210px;
+  height: 420px;
+}
+
+/* Tilt wrapper — carries the float animation; phone-mockup carries 3D tilt */
+.phone-tilt-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Float and perspective defined in animations.css */
+}
+
+/* ── Scroll indicator ────────────────────────────────────── */
+.hero-scroll {
+  position: absolute;
+  bottom: var(--space-7);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: 1;
+  opacity: 0.35;
+}
+
+.hero-scroll span {
+  font-size: 9px;
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--color-text-white);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--color-accent), transparent);
+  animation: scroll-line-pulse 2s ease-in-out infinite;
+}
+
+@keyframes scroll-line-pulse {
+  0%, 100% { opacity: 0.4; transform: scaleY(1); }
+  50%       { opacity: 1;   transform: scaleY(1.1); }
+}
+
+/* ── Desktop: 2-column layout ────────────────────────────── */
+@media (min-width: 901px) {
+  .hero .container {
+    grid-template-columns: 1fr auto;
+    gap: clamp(40px, 6vw, 80px);
+    text-align: left;
+  }
+
+  .hero-content {
+    max-width: 680px;
+  }
+
+  .hero-subtitle {
+    max-width: 520px;
+    margin-inline: 0;
+  }
+
+  .hero-cta-group {
+    justify-content: flex-start;
+  }
+
+  .hero-visual {
+    order: 0;
+  }
+
+  .phone-mockup {
+    width: 260px;
+    height: 520px;
+  }
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: calc(var(--header-height) + var(--space-5));
+    padding-bottom: var(--space-8);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-visual,
+  .hero-scroll {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.625rem, 10vw, 2rem);
+  }
+}
