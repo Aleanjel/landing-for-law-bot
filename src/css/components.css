@@ -126,6 +126,7 @@
   width: 260px;
   max-width: 100%;
   height: 520px;
+  aspect-ratio: 1 / 2;
   margin-inline: auto;
 
   background: #0A0A0A;

@@ -70,7 +70,7 @@
   color: var(--color-accent);
 }
 
-.hero-subtitle {
+.hero-content .hero-subtitle {
   font-family: var(--font-body);
   font-size: var(--fs-lg);
   font-weight: var(--fw-light);
@@ -162,9 +162,10 @@
     max-width: 680px;
   }
 
-  .hero-subtitle {
+  .hero-content .hero-subtitle {
     max-width: 520px;
     margin-inline: 0;
+    margin-bottom: var(--space-7);
   }
 
   .hero-cta-group {
@@ -176,8 +177,10 @@
   }
 
   .phone-mockup {
-    width: 260px;
-    height: 520px;
+    /* Fills hero height — overflows padding slightly, overflow:hidden clips cleanly */
+    width: auto;
+    height: clamp(520px, calc(100svh - 140px), 720px);
+    aspect-ratio: 1 / 2;
   }
 }
 
