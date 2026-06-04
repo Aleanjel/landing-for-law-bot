@@ -43,6 +43,7 @@
   align-items: center;
   gap: clamp(24px, 4vw, 40px);
   text-align: center;
+  /* desktop override: align-items: stretch (у @media min-width: 901px) */
 }
 
 /* ── Text column ─────────────────────────────────────────── */
@@ -154,12 +155,17 @@
 @media (min-width: 901px) {
   .hero .container {
     grid-template-columns: 1fr auto;
+    /* stretch: обидві колонки отримують висоту лівого контенту */
+    align-items: stretch;
     gap: clamp(40px, 6vw, 80px);
     text-align: left;
   }
 
   .hero-content {
     max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .hero-content .hero-subtitle {
@@ -172,15 +178,23 @@
     justify-content: flex-start;
   }
 
+  /* Right column: flex column → tilt-wrapper розтягується на всю висоту */
   .hero-visual {
     order: 0;
+    display: flex;
+    flex-direction: column;
   }
 
+  .phone-tilt-wrapper {
+    flex: 1;
+  }
+
+  /* Phone: заповнює 100% tilt-wrapper, ширина = висота / 2 */
   .phone-mockup {
-    /* Fills hero height — overflows padding slightly, overflow:hidden clips cleanly */
+    height: 100%;
     width: auto;
-    height: clamp(520px, calc(100svh - 140px), 720px);
     aspect-ratio: 1 / 2;
+    min-width: 200px;
   }
 }
 

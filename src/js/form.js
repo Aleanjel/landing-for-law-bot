@@ -137,38 +137,55 @@ function validate(form) {
   return valid;
 }
 
-/* ── Toast ────────────────────────────────────────────────── */
-let toastTimer = null;
+/* ── Modal ────────────────────────────────────────────────── */
+function showModal(type, title, text) {
+  let overlay = document.getElementById('form-modal');
 
-function showToast(type, title, text) {
-  let toast = document.getElementById('form-toast');
-
-  if (!toast) {
-    toast = document.createElement('div');
-    toast.id = 'form-toast';
-    toast.setAttribute('role', 'alert');
-    toast.setAttribute('aria-live', 'assertive');
-    toast.innerHTML =
-      '<span class="form-toast__icon"></span>' +
-      '<div class="form-toast__body">' +
-        '<span class="form-toast__title"></span>' +
-        '<span class="form-toast__text"></span>' +
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'form-modal';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-labelledby', 'form-modal-title');
+    overlay.innerHTML =
+      '<div class="form-modal">' +
+        '<div class="form-modal__icon"></div>' +
+        '<h3 class="form-modal__title" id="form-modal-title"></h3>' +
+        '<p class="form-modal__text"></p>' +
+        '<button class="form-modal__close" type="button">Закрити</button>' +
       '</div>';
-    document.body.appendChild(toast);
+    document.body.appendChild(overlay);
+
+    /* Закрити по кліку на оверлей або кнопку */
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+    overlay.querySelector('.form-modal__close').addEventListener('click', closeModal);
+
+    /* Закрити по Escape */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-visible')) closeModal();
+    });
   }
 
-  toast.className = `form-toast form-toast--${type}`;
-  toast.querySelector('.form-toast__icon').textContent  = type === 'success' ? '✓' : '✕';
-  toast.querySelector('.form-toast__title').textContent = title;
-  toast.querySelector('.form-toast__text').textContent  = text;
+  overlay.className = `form-modal-overlay form-modal--${type}`;
+  overlay.querySelector('.form-modal__icon').textContent  = type === 'success' ? '✓' : '✕';
+  overlay.querySelector('.form-modal__title').textContent = title;
+  overlay.querySelector('.form-modal__text').textContent  = text;
 
-  // Trigger animation (double rAF ensures transition fires after class change)
+  /* Блокуємо скрол сторінки */
+  document.body.style.overflow = 'hidden';
+
   requestAnimationFrame(() => requestAnimationFrame(() => {
-    toast.classList.add('is-visible');
+    overlay.classList.add('is-visible');
   }));
+}
 
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove('is-visible'), 5000);
+function closeModal() {
+  const overlay = document.getElementById('form-modal');
+  if (!overlay) return;
+  overlay.classList.remove('is-visible');
+  document.body.style.overflow = '';
 }
 
 /* ── Submit ───────────────────────────────────────────────── */
@@ -210,17 +227,17 @@ async function handleSubmit(e) {
     lastSubmitTime = Date.now();
     setButtonState(btn, 'success');
     form.reset();
-    showToast(
+    showModal(
       'success',
       'Дякуємо за заявку!',
-      'Ми отримали ваші дані і скоро зв\'яжемося з вами.'
+      'Ми отримали ваші дані і найближчим часом зв\'яжемося з вами для узгодження демо.'
     );
     setTimeout(() => setButtonState(btn, 'idle'), 4000);
 
   } catch (err) {
     console.error('[form] Webhook error:', err);
     setButtonState(btn, 'error');
-    showToast(
+    showModal(
       'error',
       'Щось пішло не так',
       'Спробуйте надіслати форму ще раз або зв\'яжіться з нами напряму.'
