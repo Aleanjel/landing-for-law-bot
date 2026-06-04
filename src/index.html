@@ -155,53 +155,63 @@
     <section class="calculator" id="calculator" aria-labelledby="calculator-title">
       <div class="container">
 
-        <div class="calculator-header reveal">
-          <span class="section-label">Калькулятор</span>
-          <h2 id="calculator-title">Скільки ви втрачаєте щомісяця?</h2>
-          <p>Пересуньте повзунок і вкажіть, скільки звернень на місяць лишаються без відповіді. Ми помножимо це на ваш середній чек — і покажемо суму, яку ви недоотримуєте.</p>
-        </div>
-
-        <div class="calculator-display reveal reveal-d1" aria-live="polite" aria-atomic="true">
-          <span class="calc-prefix">Ви втрачаєте</span>
-          <div class="calc-result">
-            <span class="calc-amount" id="calc-amount">$300</span>
-            <span class="calc-period">щомісяця</span>
+        <div class="calculator-content">
+          <div class="calculator-header reveal">
+            <span class="section-label">Калькулятор</span>
+            <h2 id="calculator-title">Скільки ви втрачаєте щомісяця?</h2>
+            <p>Пересуньте повзунок і вкажіть, скільки звернень на місяць лишаються без відповіді. Ми помножимо це на ваш середній чек — і покажемо суму, яку ви недоотримуєте.</p>
           </div>
-        </div>
 
-        <div class="calculator-controls reveal reveal-d2">
-          <div class="calc-slider-wrap">
-            <label class="calc-label" for="calc-clients">
-              Кількість втрачених клієнтів на місяць
-              <span class="calc-value-display" id="calc-value-display">3</span>
-            </label>
-            <input
-              type="range"
-              id="calc-clients"
-              min="1"
-              max="50"
-              value="3"
-              class="calc-slider"
-              aria-label="Кількість втрачених клієнтів на місяць"
-              aria-valuemin="1"
-              aria-valuemax="50"
-              aria-valuenow="3"
-            >
-            <div class="calc-slider-markers" aria-hidden="true">
-              <span>1</span>
-              <span>25</span>
-              <span>50</span>
+          <div class="calculator-display reveal reveal-d1" aria-live="polite" aria-atomic="true">
+            <span class="calc-prefix">Ви втрачаєте</span>
+            <div class="calc-result">
+              <span class="calc-amount" id="calc-amount">$300</span>
+              <span class="calc-period">щомісяця</span>
             </div>
           </div>
 
-          <div class="calc-fixed">
-            <span class="calc-fixed-label">Фіксований середній чек консультації</span>
-            <span class="calc-fixed-value">$100</span>
+          <div class="calculator-controls reveal reveal-d2">
+            <div class="calc-slider-wrap">
+              <label class="calc-label" for="calc-clients">
+                Кількість втрачених клієнтів на місяць
+                <span class="calc-value-display" id="calc-value-display">3</span>
+              </label>
+              <input
+                type="range"
+                id="calc-clients"
+                min="1"
+                max="50"
+                value="3"
+                class="calc-slider"
+                aria-label="Кількість втрачених клієнтів на місяць"
+                aria-valuemin="1"
+                aria-valuemax="50"
+                aria-valuenow="3"
+              >
+              <div class="calc-slider-markers" aria-hidden="true">
+                <span>1</span>
+                <span>25</span>
+                <span>50</span>
+              </div>
+            </div>
+
+            <div class="calc-fixed">
+              <span class="calc-fixed-label">Фіксований середній чек консультації</span>
+              <span class="calc-fixed-value">$100</span>
+            </div>
+          </div>
+
+          <div class="calculator-cta reveal reveal-d3">
+            <a href="#contact" class="btn btn-dark">Підключити бота та зупинити втрати</a>
           </div>
         </div>
 
-        <div class="calculator-cta reveal reveal-d3">
-          <a href="#contact" class="btn btn-dark">Підключити бота та зупинити втрати</a>
+        <div class="calculator-image reveal reveal-d1" aria-hidden="true">
+          <img
+            src="https://i.postimg.cc/h4zdgVc0/zavantazenna-(9).jpg"
+            alt=""
+            loading="lazy"
+          >
         </div>
 
       </div>
