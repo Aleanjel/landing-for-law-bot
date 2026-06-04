@@ -60,7 +60,7 @@ function isRateLimited() {
 
 function setButtonState(btn, state) {
   const labels = {
-    idle:    'Зв\'яжіться з нами',
+    idle:    'Отримати демо',
     loading: 'Надсилаємо…',
     success: 'Заявку отримано ✓',
     error:   'Помилка. Спробуйте ще раз',
