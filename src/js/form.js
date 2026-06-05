@@ -1,6 +1,6 @@
 'use strict';
 
-const WEBHOOK_URL   = 'https://n8n.srv869585.hstgr.cloud/webhook/f6c5683f-c81e-4f9a-9937-4e709fc86353';
+const WEBHOOK_URL   = 'https://n8n.shockwavetrade.com/webhook/f6c5683f-c81e-4f9a-9937-4e709fc86353';
 const RATE_LIMIT_MS = 60_000;
 
 const EMAIL_RE    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

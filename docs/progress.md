@@ -1018,6 +1018,61 @@ src/
 
 ---
 
+## Сесія: 2026-06-05 (Chat Widget)
+
+### Поточна задача
+Преміальний чат-віджет з AI-агентом у лівому нижньому куті.
+
+### Технічна схема
+POST `https://n8n.shockwavetrade.com/webhook/ad4d8dc2-430e-486a-9236-aefc120cbbb2`
+Body: `{ "chatInput": "текст", "sessionId": "widget_xxxx" }`
+Response: `{ "output": "відповідь бота" }`
+
+### Покроковий план
+- [x] **W1.** `src/css/widget.css` — тригер з пульсом, chat window, header, messages, typing, input
+- [x] **W2.** `src/js/widget.js` — open/close, welcome msg, POST webhook, typing indicator, SVG icons
+- [x] **W3.** `widget.css` і `widget.js` підключено в `index.html`
+
+---
+
+## Сесія: 2026-06-05 (Mobile Spacing — Варіант B авто-центрування)
+
+### Поточна задача
+Вирівняти відступи у всіх мобільних блоках — однакова відстань зверху (від header) і знизу.
+
+### Рішення — математично рівні відступи
+`padding-top = header_height + space` та `padding-bottom = space` → `justify-content: center` центрує контент у просторі між ними → відстань зверху від header = відстань знизу від краю viewport.
+
+Формула: `padding-top: calc(var(--header-height) + var(--space-5))` + `padding-bottom: var(--space-5)`
+
+### Покроковий план
+- [x] **S1.** `base.css` — `padding-top: calc(header + space-5); padding-bottom: space-5`
+- [x] **S2.** `features.css` — те саме замість `padding-block: section-padding-y`
+- [x] **S3.** `calculator.css` — те саме замість `padding-block: space-5`
+- [x] **S4.** `lead-form.css` — те саме замість `padding-block: space-6`
+
+---
+
+## Сесія: 2026-06-05 (Mobile Градієнтні переходи між секціями)
+
+### Поточна задача
+Замінити різкі кольорові переходи між блоками на плавні градієнти на мобільному.
+
+### Рішення
+Новий файл `transitions.css` — кожна секція отримує `background: linear-gradient` що:
+- Починається з кольору ПОПЕРЕДНЬОЇ секції (перші 8% висоти — до початку контенту)
+- Тримає власний колір у центрі (8%–92%)
+- Закінчується кольором НАСТУПНОЇ секції (останні 8%)
+
+### Ланцюжок кольорів
+`#0D1B2A` Hero → `#F8F7F4` Problems → `#FFFFFF` Calculator → `#111111` Features → `#FFFFFF` Objections → `#F8F7F4` Testimonials → `#111111` Audience → `#0D1B2A` Lead Form
+
+### Покроковий план
+- [x] **G1.** Створити `src/css/transitions.css` — 8 секцій, gradients на mobile ≤768px
+- [x] **G2.** Підключено між `lead-form.css` і `animations.css`
+
+---
+
 ## Сесія: 2026-06-05 (Features Accordion — мобільний акордеон)
 
 ### Поточна задача

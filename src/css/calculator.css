@@ -469,9 +469,9 @@
 }
 
 @media (max-width: 768px) {
-  /* Секція: менший вертикальний відступ щоб весь блок вліз на екран */
   .calculator {
-    padding-block: var(--space-5);
+    padding-top: calc(var(--header-height) + var(--space-5));
+    padding-bottom: var(--space-5);
   }
 
   /* Ховаємо довгий описовий абзац — він забирає 4+ рядки висоти */
@@ -510,7 +510,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-1);
+    gap: var(--space-3); /* = gap у .calculator-display → рівні відступи зверху і знизу від $300 */
     width: 100%;
     text-align: center;
   }
