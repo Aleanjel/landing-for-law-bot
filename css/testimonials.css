@@ -1,0 +1,169 @@
+/* ── Блок 6: Відгуки / Історії успіху ───────────────────── */
+.testimonials {
+  background-color: var(--color-light);
+}
+
+.testimonials .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.testimonials-header {
+  max-width: 680px;
+}
+
+.testimonials-header h2 {
+  color: var(--color-text-primary);
+  margin-bottom: 0;
+}
+
+/* ── 3-Column Grid ───────────────────────────────────────── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 40px);
+}
+
+/* ── Single Testimonial ──────────────────────────────────── */
+.testimonial-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-item:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* ── CSS Avatar (grayscale studio portrait placeholder) ──── */
+.testimonial-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: var(--fw-light);
+  color: rgba(255, 255, 255, 0.82);
+  flex-shrink: 0;
+  filter: grayscale(100%) contrast(120%);
+  user-select: none;
+}
+
+.testimonial-avatar--1 {
+  background: linear-gradient(145deg, #606060 0%, #1E1E1E 100%);
+}
+
+.testimonial-avatar--2 {
+  background: linear-gradient(145deg, #484848 0%, #111111 100%);
+}
+
+.testimonial-avatar--3 {
+  background: linear-gradient(145deg, #525252 0%, #181818 100%);
+}
+
+/* ── Quote Block ─────────────────────────────────────────── */
+.testimonial-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  flex: 1;
+}
+
+.testimonial-problem,
+.testimonial-solution,
+.testimonial-result {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-loose);
+  margin: 0;
+}
+
+/* Проблема — приглушений тон */
+.testimonial-problem {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  font-weight: var(--fw-regular);
+}
+
+/* Рішення — середній тон */
+.testimonial-solution {
+  color: var(--color-text-primary);
+  font-weight: var(--fw-regular);
+}
+
+/* Результат — повний контраст + gold accent */
+.testimonial-result {
+  color: var(--color-text-primary);
+  font-weight: var(--fw-medium);
+}
+
+.testimonial-result::before {
+  content: '→ ';
+  color: var(--color-accent);
+  font-style: normal;
+  font-weight: var(--fw-regular);
+}
+
+/* ── Author Footer ───────────────────────────────────────── */
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-4);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin-top: auto;
+}
+
+.testimonial-name {
+  font-family: var(--font-display);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-primary);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+}
+
+.testimonial-role {
+  font-family: var(--font-body);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wider);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .testimonial-item:last-child {
+    grid-column: 1 / -1;
+    max-width: 540px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .testimonial-item:last-child {
+    grid-column: 1;
+    max-width: 100%;
+  }
+}

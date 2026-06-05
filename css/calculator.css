@@ -1,0 +1,594 @@
+/* ── Блок 3: Калькулятор ──────────────────────────────────── */
+.calculator {
+  background-color: var(--color-white);
+}
+
+.calculator .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Головний грід: ліво + право ─────────────────────────── */
+.calculator-main {
+  display: grid;
+  grid-template-columns: 1fr clamp(300px, 38vw, 460px);
+  align-items: stretch;
+  gap: clamp(48px, 6vw, 96px);
+}
+
+/* ── Ліва колонка ────────────────────────────────────────── */
+.calculator-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* ── Заголовок ───────────────────────────────────────────── */
+.calculator-header h2 {
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.calculator-header p {
+  color: var(--color-text-muted);
+  font-size: var(--fs-base);
+}
+
+/* ── Дисплей числа ───────────────────────────────────────── */
+.calculator-display {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block: var(--space-6);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.calc-prefix {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-muted);
+}
+
+.calc-result {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.calc-amount {
+  font-family: var(--font-display);
+  font-size: var(--fs-4xl);
+  font-weight: var(--fw-light);
+  color: var(--color-text-primary);
+  letter-spacing: var(--ls-tight);
+  line-height: 1;
+  transition: color 0.25s ease;
+  font-variant-numeric: tabular-nums;
+  will-change: contents;
+}
+
+.calc-amount.is-changing {
+  color: var(--color-accent);
+}
+
+.calc-period {
+  font-family: var(--font-body);
+  font-size: var(--fs-2xl);
+  font-weight: var(--fw-light);
+  color: var(--color-text-secondary);
+}
+
+/* ── Слайдер ─────────────────────────────────────────────── */
+.calculator-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.calc-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Рядок: − [слайдер] + */
+.calc-slider-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.calc-slider-minus,
+.calc-slider-plus {
+  font-family: var(--font-body);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-light);
+  color: var(--color-accent);
+  flex-shrink: 0;
+  user-select: none;
+  line-height: 1;
+  width: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .calc-slider-minus:hover,
+  .calc-slider-plus:hover {
+    opacity: 0.7;
+  }
+}
+
+.calc-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-5);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-primary);
+  cursor: default;
+  user-select: none;
+}
+
+.calc-value-display {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-light);
+  color: var(--color-text-primary);
+  letter-spacing: var(--ls-tight);
+  min-width: 2.5ch;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.calc-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.12);
+  outline: none;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 0;
+  margin: 4px 0;
+}
+
+.calc-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(200, 169, 110, 0.40);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.calc-slider:hover::-webkit-slider-thumb {
+  transform: scale(1.15);
+  box-shadow: 0 4px 18px rgba(200, 169, 110, 0.55);
+}
+
+.calc-slider:active::-webkit-slider-thumb {
+  transform: scale(1.25);
+}
+
+.calc-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 10px rgba(200, 169, 110, 0.40);
+}
+
+.calc-slider::-moz-range-track {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.12);
+  border: none;
+}
+
+.calc-slider-markers {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  color: rgba(0, 0, 0, 0.25);
+  padding-inline: 2px;
+}
+
+/* ── Права колонка: ілюстрація ───────────────────────────── */
+.calculator-image {
+  align-self: stretch;
+  display: flex;
+  align-items: stretch;
+}
+
+.calc-illustration {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* ── SVG стилі ───────────────────────────────────────────── */
+.ci-ghost {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 300px;
+  font-weight: 300;
+  fill: rgba(200, 169, 110, 0.09);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Стовп — прямокутник для об'єму */
+.ci-pole-rect {
+  fill: rgba(0, 0, 0, 0.20);
+  rx: 1;
+}
+
+/* Основа */
+.ci-structure line {
+  stroke: rgba(200, 169, 110, 0.88);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+/* Pivot diamond */
+.ci-diamond {
+  fill: rgba(200, 169, 110, 0.95);
+}
+
+.ci-diamond-inner {
+  fill: rgba(255, 255, 255, 0.28);
+  stroke: none;
+}
+
+.ci-pivot-group line {
+  stroke: rgba(200, 169, 110, 0.72);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+/* Балка */
+.ci-beam {
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+/* Ланцюги */
+.ci-chain {
+  stroke: rgba(200, 169, 110, 0.68);
+  stroke-width: 1.8;
+  stroke-dasharray: 4 5;
+  stroke-linecap: round;
+}
+
+/* Тіло чаші */
+.ci-pan-body {
+  fill: url(#ci-pan-fill);
+  stroke: none;
+}
+
+.ci-pan-body--light {
+  fill: rgba(200, 169, 110, 0.05);
+}
+
+/* Верхній обід */
+.ci-pan {
+  stroke: rgba(200, 169, 110, 0.90);
+  stroke-width: 2.5;
+  fill: rgba(200, 169, 110, 0.10);
+}
+
+.ci-pan--light {
+  stroke: rgba(200, 169, 110, 0.48);
+  fill: rgba(200, 169, 110, 0.04);
+}
+
+/* Внутрішній обід (глибина) */
+.ci-pan-inner {
+  stroke: rgba(200, 169, 110, 0.28);
+  stroke-width: 1;
+  fill: none;
+}
+
+.ci-pan-inner--light {
+  stroke: rgba(200, 169, 110, 0.14);
+}
+
+/* Нижній обід */
+.ci-pan-bottom {
+  stroke: rgba(200, 169, 110, 0.62);
+  stroke-width: 2;
+  fill: rgba(200, 169, 110, 0.07);
+}
+
+.ci-pan-bottom--light {
+  stroke: rgba(200, 169, 110, 0.28);
+  fill: rgba(200, 169, 110, 0.02);
+}
+
+/* Гирі */
+.ci-dot {
+  fill: url(#ci-dot-fill);
+  stroke: rgba(200, 169, 110, 0.92);
+  stroke-width: 2;
+}
+
+.ci-dot--light {
+  fill: rgba(200, 169, 110, 0.06);
+  stroke: rgba(200, 169, 110, 0.42);
+}
+
+/* Мітки */
+.ci-ticks line {
+  stroke: rgba(200, 169, 110, 0.45);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+/* ── Анімації ілюстрації ─────────────────────────────────── */
+.ci-ghost,
+.ci-structure,
+.ci-pivot-group,
+.ci-scales,
+.ci-ticks {
+  opacity: 0;
+}
+
+.ci-scales {
+  transform-box: view-box;
+  transform-origin: 170px 88px;
+}
+
+.calculator-image.active .ci-ghost {
+  animation: ci-ghost-in 2s cubic-bezier(0.4, 0, 0.2, 1) 0.15s both;
+}
+
+.calculator-image.active .ci-structure {
+  animation: ci-emerge 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s both;
+}
+
+.calculator-image.active .ci-pivot-group {
+  animation: ci-pop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) 1.05s both;
+}
+
+.calculator-image.active .ci-scales {
+  animation:
+    ci-scales-in 0.95s cubic-bezier(0.4, 0, 0.2, 1) 1.3s both,
+    ci-scales-sway 3.5s ease-in-out 2.5s infinite;
+}
+
+.calculator-image.active .ci-ticks {
+  animation: ci-emerge 0.7s ease 2s both;
+}
+
+@keyframes ci-ghost-in {
+  from { opacity: 0; transform: scale(1.07); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ci-emerge {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ci-pop {
+  from { opacity: 0; transform: scale(0.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ci-scales-in {
+  from { opacity: 0; transform: rotate(-6deg); }
+  to   { opacity: 1; transform: rotate(0deg); }
+}
+
+@keyframes ci-scales-sway {
+  0%, 100% { transform: rotate(0deg); }
+  35%      { transform: rotate(4deg); }
+  70%      { transform: rotate(-2deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calculator-image.active .ci-ghost,
+  .calculator-image.active .ci-structure,
+  .calculator-image.active .ci-pivot-group,
+  .calculator-image.active .ci-scales,
+  .calculator-image.active .ci-ticks {
+    animation: none !important;
+    opacity: 1;
+  }
+}
+
+/* ── Нижній рядок: фіксований чек + кнопка ──────────────── */
+.calculator-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.calc-fixed {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.calc-fixed-label {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--fw-medium);
+}
+
+.calc-fixed-value {
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-regular);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--ls-tight);
+  white-space: nowrap;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .calculator-main {
+    grid-template-columns: 1fr;
+  }
+
+  .calculator-image {
+    display: none;
+  }
+
+  .calculator-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .calculator-footer .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    white-space: normal;
+    line-height: var(--lh-snug);
+    padding: 14px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calculator {
+    padding-top: calc(var(--header-height) + var(--space-5));
+    padding-bottom: var(--space-5);
+  }
+
+  /* Ховаємо довгий описовий абзац — він забирає 4+ рядки висоти */
+  .calculator-header p {
+    display: none;
+  }
+
+  /* Контейнер: менший gap між підблоками */
+  .calculator .container {
+    gap: var(--space-4);
+  }
+
+  .calculator-left {
+    gap: var(--space-4);
+  }
+
+  .calculator-controls {
+    gap: var(--space-3);
+  }
+
+  /* Дисплей: по центру + компактний padding */
+  .calculator-display {
+    padding-block: var(--space-4);
+    align-items: center;
+  }
+
+  .calc-prefix {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: var(--fs-xs);
+    color: var(--color-text-muted);
+  }
+
+  .calc-result {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3); /* = gap у .calculator-display → рівні відступи зверху і знизу від $300 */
+    width: 100%;
+    text-align: center;
+  }
+
+  .calc-amount {
+    font-size: clamp(2.5rem, 12vw, 3.5rem);
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .calc-period {
+    font-size: var(--fs-base);
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  /* Слайдер: трек 3px, thumb 20px */
+  .calc-slider {
+    width: 100%;
+    height: 3px;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+  }
+
+  .calc-slider::-webkit-slider-runnable-track {
+    height: 3px;
+    border-radius: 2px;
+  }
+
+  .calc-slider::-webkit-slider-thumb {
+    width: 20px;
+    height: 20px;
+    margin-top: -8.5px; /* (track 3px - thumb 20px) / 2 */
+    box-shadow: 0 2px 8px rgba(200, 169, 110, 0.45);
+  }
+
+  .calc-slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    box-shadow: 0 2px 8px rgba(200, 169, 110, 0.45);
+  }
+
+
+  .calc-slider::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 1px 6px rgba(200, 169, 110, 0.50);
+  }
+  .calc-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    box-shadow: 0 1px 6px rgba(200, 169, 110, 0.50);
+  }
+
+  .calculator-footer {
+    padding-top: var(--space-3);
+  }
+}
+
+@media (max-width: 480px) {
+  .calc-label {
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-start;
+  }
+
+  .calc-value-display {
+    align-self: flex-start;
+  }
+
+  .calc-fixed {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+}
