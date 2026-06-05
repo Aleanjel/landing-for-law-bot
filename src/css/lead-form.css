@@ -68,9 +68,9 @@
 /* ── Label ───────────────────────────────────────────────── */
 .form-label {
   font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.10em;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-wider);
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.55);
   user-select: none;
@@ -344,15 +344,64 @@
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* Секція: менший padding щоб форма вмістилась на 1 екран */
+  .lead-form-section {
+    padding-block: var(--space-6);
+  }
+
+  /* Gap між заголовком і формою */
+  .lead-form-section .container {
+    gap: var(--space-6);
+  }
+
+  /* Ховаємо описовий абзац — заощаджуємо ~60px висоти */
+  .lead-form-header p {
+    display: none;
+  }
+
+  /* Менша відстань під h2 */
+  .lead-form-header h2 {
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-3);
+  }
+
+  /* Менший відступ під section-label */
+  .lead-form-header .section-label {
+    margin-bottom: var(--space-2);
+  }
+
   .lead-form-wrapper {
     grid-template-columns: 1fr;
     max-width: 100%;
-    row-gap: var(--space-7);
+    row-gap: var(--space-6);
   }
 
   .form-group--full,
   .form-submit-row,
   .form-privacy {
     grid-column: 1;
+  }
+
+  /* Input: компактніший padding */
+  .form-input {
+    padding: 10px 0;
+    min-height: 44px;
+  }
+
+  /* Менший відступ перед кнопкою */
+  .form-submit-row {
+    margin-top: var(--space-2);
+  }
+
+  /* Кнопка: компактніша висота */
+  .form-submit {
+    padding: 16px 24px;
+  }
+
+  /* Privacy дрібніша */
+  .form-privacy {
+    font-size: var(--fs-xs);
+    margin-top: 0;
+    opacity: 0.6;
   }
 }

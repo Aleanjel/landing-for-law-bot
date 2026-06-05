@@ -982,3 +982,165 @@ src/
 | Відгуки | Імена: Андрій К./Ольга М./Віктор Л., міста Львів/Київ/Дніпро, порядок цитата→підпис→результат |
 | Аудиторія | Скорочені й уточнені тексти карток, назва 03: "Нотаріальні контори" |
 | Форма | Підзаголовок, кнопка "Отримати демо" (також у form.js idle state) |
+
+---
+
+## Сесія: 2026-06-05 (Mobile Audit Fix — 11 проблем)
+
+### Поточна задача
+Виправлення 11 мобільних проблем, знайдених під час аудиту за Mobile-First скілом.
+
+### Ціль
+Зробити лендінг бездоганним на мобільних пристроях: навігація, touch UX, safe area, hover-стани, одиниці вимірювання.
+
+### Покроковий план
+
+#### 🔴 КРИТИЧНІ
+- [x] **M1.** Мобільна навігація — hamburger menu (`base.css` + `index.html` + `animations.js`)
+- [x] **M2.** `:hover` без `@media (hover: hover)` — огорнуто у `problems.css`, `features.css`, `testimonials.css`, `pricing.css`
+
+#### 🟠 ВАЖЛИВІ
+- [x] **M3.** `svh` → `dvh` — замінено у `base.css` та `hero.css`
+- [x] **M4.** Safe Area insets — `env(safe-area-inset-top)` для header, `max(...)` для footer; `viewport-fit=cover` в `index.html`
+
+#### 🟡 СЕРЕДНІ
+- [x] **M5.** Slider touch target: `padding-block: 21px` + `margin-block: -21px` → ефективна зона 44px
+- [x] **M6.** Phone mockup `order: -1` прибрано з мобільного; `order: 0` залишено лише для десктопу (min-width: 901px)
+- [x] **M7.** Hardcoded `11px`, `600`, `0.10em` → `var(--fs-xs)`, `var(--fw-semibold)`, `var(--ls-wider)`
+
+#### 🔵 НЕЗНАЧНІ
+- [x] **M8.** `patterns.css` — файл не існує, пункт закрито (не створювався)
+- [x] **M9.** `row-gap: var(--space-7)` → `var(--space-5)` у `lead-form.css` на мобільному
+- [x] **M10.** Hero CTA: `flex-direction: column; align-items: stretch` + `.btn { width: 100% }` на ≤640px
+
+#### ♻️ РЕФАКТОРИНГ (останнє)
+- [ ] **M11.** Desktop-First → Mobile-First: переписати медіазапити з `max-width` на `min-width` у всіх секційних CSS-файлах
+
+---
+
+## Сесія: 2026-06-05 (Features Accordion — мобільний акордеон)
+
+### Поточна задача
+Замінити 2×2 grid на акордеон для блоку "Можливості" на мобільному.
+
+### Ціль
+На мобільному кожна з 4 карток стає плашкою: `[01  Назва  ↓]`. Тап — розкривається текст. Десктоп — без змін (картки як є).
+
+### Покроковий план
+- [x] **A1.** `index.html` — `.feature-header` (flex row: num+title+arrow), `.feature-body` (колапсований текст)
+- [x] **A2.** `features.css` — акордеон: плашки з border-bottom, `max-height` transition, chevron стрілка, `.is-open` стан
+- [x] **A3.** `animations.js` — `initFeatureAccordion()`: перший відкритий за default, toggle, клавіатура, resize handler
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-06-05 (Mobile Audit Fix M1–M10)
+
+**Статус: Done (M1–M10). M11 — окремий рефакторинг.**
+
+| Пункт | Файли | Зміна |
+|---|---|---|
+| M1 — Hamburger nav | `index.html`, `base.css`, `animations.js` | `nav-toggle` кнопка (3 лінії → ×), fullscreen overlay, stagger анімація посилань, JS open/close/Escape/resize |
+| M2 — Hover на touch | `problems.css`, `features.css`, `testimonials.css`, `pricing.css` | Всі `:hover` стани огорнуто в `@media (hover: hover) and (pointer: fine)` |
+| M3 — svh → dvh | `base.css`, `hero.css` | `100svh` → `100dvh` скрізь — адрес-рядок iOS не обрізає секції |
+| M4 — Safe Area | `index.html`, `base.css` | `viewport-fit=cover`; header: `padding-top: env(safe-area-inset-top)`; footer: `padding-bottom: max(space-7, env(safe-area-inset-bottom))` |
+| M5 — Slider thumb | `calculator.css` | `padding-block: 21px` + `margin-block: -21px` → tap area = 44px (Apple HIG) |
+| M6 — Phone order | `hero.css` | Прибрано `order: -1` з базових стилів; на мобільному phone після тексту |
+| M7 — Hardcoded px | `lead-form.css` | `11px` → `var(--fs-xs)`, `600` → `var(--fw-semibold)`, `0.10em` → `var(--ls-wider)` |
+| M8 — patterns.css | — | Файл не існує; пункт закрито |
+| M9 — Form row-gap | `lead-form.css` | `var(--space-7)` (48px) → `var(--space-5)` (24px) на мобільному |
+| M10 — Hero CTA | `hero.css` | На ≤640px: кнопка 100% ширина, `flex-direction: column` для групи |
+
+---
+
+## Сесія: 2026-06-05 (Mobile UI Fixes — 5 точкових правок)
+
+### Поточна задача
+Точкові правки мобільного UI за фідбеком після перегляду на пристрої.
+
+### Ціль
+Кожен блок має виглядати завершено на екрані будь-якого телефону: рівні відступи, центрування, компактність, зручна сітка.
+
+### Покроковий план
+
+---
+
+#### R1. Рівні відступи top/bottom для всіх блоків окрім Hero
+**Файл:** `base.css`
+**Проблема:** На мобільному деякі секції мають різний `padding-top` і `padding-bottom` — блоки виглядають "зміщеними" всередині екрану.
+**Рішення:**
+- У `@media (max-width: 768px)` додати явне `padding-block: var(--section-padding-y)` для `main > section`
+- Hero виключити через специфічніший селектор `.hero` (вже має власний `padding-top` для header offset)
+- Перевірити що `features` (яка має `padding-block: 0` на десктопі) отримує однакові відступи на мобільному через наявний override у `@media (max-width: 900px)`
+
+---
+
+#### R2. Калькулятор — мобільна версія
+**Файл:** `calculator.css`
+**Проблема 1:** "Ви втрачаєте / $300 / щомісяця" — вирівняні по лівому краю, виглядають нецентровано.
+**Рішення 1:** У `@media (max-width: 768px)` додати `text-align: center` на `.calculator-display`, `align-items: center` на `.calc-result`, `justify-content: center` на `.calc-prefix`
+
+**Проблема 2:** Повзунок товстуватий, виглядає важко.
+**Рішення 2:** Зменшити thumb до 20px, трек лишити `height: 2px`, прибрати зайвий `box-shadow` на thumb, додати тонку золоту лінію як трек — елегантніший вигляд.
+
+**Проблема 3:** Текст кнопки "Підключити бота та зупинити втрати" не по центру (wraps на 2 рядки і зміщується).
+**Рішення 3:** Додати `text-align: center; white-space: normal; justify-content: center` на кнопку у `.calculator-footer` при `max-width: 900px`.
+
+**Проблема 4:** Відстань між підблоками (header → display → controls → footer) завелика — блок не вміщується на 1 екран.
+**Рішення 4:** У `@media (max-width: 768px)` зменшити: `gap` контейнера з `var(--space-6)` до `var(--space-4)`, `padding-block` дисплею з `var(--space-6)` до `var(--space-4)`, `gap` controls з `var(--space-4)` до `var(--space-3)`.
+
+---
+
+#### R3. Можливості — 2×2 grid на мобільному
+**Файл:** `features.css`
+**Проблема:** 4 картки у 1 колонку дають дуже довгу секцію, яку треба довго скролити.
+**Рішення:**
+- У `@media (max-width: 900px)` (де sticky → static) змінити `.features-list` з `flex-direction: column` на `display: grid; grid-template-columns: repeat(2, 1fr)`
+- Відступ між картками: `gap: var(--space-4)`
+- На дуже вузьких екранах `@media (max-width: 400px)` повернути до 1 колонки щоб текст не обрізався
+- `.feature-text` додати `font-size: var(--fs-sm)` на мобільному для компактності
+
+---
+
+#### R4. Порівняння — центрування всіх текстів
+**Файл:** `objections.css`
+**Проблема:** На мобільному колонки розкладаються вертикально, але `text-align: left` та `align-items: flex-start` — тексти притиснуті ліворуч, виглядають незбалансовано.
+**Рішення:** У `@media (max-width: 768px)`:
+- `.versus-col` і `.versus-col--without`: `text-align: center`, `align-items: center`
+- `.versus-grid`: `align-items: center`
+- `.versus-divider` (горизонтальний): `margin-inline: auto`
+- Tagline вже центрована (`text-align: center`) — залишити без змін
+
+---
+
+#### R5. Форма — стиснути відступи для 1 екрану
+**Файл:** `lead-form.css`
+**Проблема:** Форма з заголовком, 4 полями і кнопкою не вміщується на 1 екран телефону — треба скролити.
+**Рішення:** У `@media (max-width: 768px)`:
+- Gap контейнера (header ↔ форма): `var(--space-6)` → `var(--space-4)`
+- `row-gap` між полями: `var(--space-5)` → `var(--space-4)`
+- `.lead-form-header h2`: зменшити `margin-bottom` до `var(--space-3)`
+- `.lead-form-header p`: `font-size: var(--fs-sm)` — трохи менший підзаголовок
+- `.form-submit-row`: `margin-top: var(--space-3)` → `var(--space-2)`
+- `.form-privacy`: `font-size` ще менший або прибрати `margin-top`
+
+---
+
+## ПРОТОКОЛ ЗАВЕРШЕННЯ — 2026-06-05 (Mobile UI Fixes R1–R5)
+
+**Статус: Done**
+
+| Пункт | Файл | Ключова зміна |
+|---|---|---|
+| R1 | `base.css` | `padding-block: var(--section-padding-y)` в мобільному `@media`; виправлено orphan CSS (стилі випали за межі media query) |
+| R2 | `calculator.css` | Дисплей `text-align: center`; calc-result `align-items: center`; gap контейнера `space-3`; слайдер `height: 1px`, thumb `18px`, `box-shadow` тонший |
+| R3 | `features.css` | `features-list`: `grid repeat(2,1fr)` gap `space-4` на ≤900px; fallback `1fr` на ≤400px; `feature-title` → `fs-xl`, `feature-text` → `fs-sm` |
+| R4 | `objections.css` | Всі `.versus-col`: `text-align: center`, `align-items: center`; `.versus-divider`: `margin: 0 auto` |
+| R5 | `lead-form.css` | Container gap `space-4`; `h2 margin-bottom space-3`; `p font-size fs-sm`; `row-gap space-4`; `form-submit-row margin-top space-2`; privacy `10px` |
+
+### Виправлення після ревізії (структурні баги)
+
+| Баг | Причина | Файл | Виправлення |
+|---|---|---|---|
+| Мобільні стилі в `base.css` не застосовувались | Вкладений `@media (hover: hover)` всередині `@media (max-width: 768px)` — старі браузери зупиняють парсинг після нього | `base.css` | Вкладений `@media (hover)` перенесено за межі зовнішнього `@media` |
+| Калькулятор не вміщується на екран | Не врахований довгий `<p>` опис (~4 рядки = ~80px висоти) | `calculator.css` | `display: none` на `.calculator-header p` на мобільному; `padding-block: var(--space-5)` для секції |
+| Форма не вміщується на екран | Не врахований накопичений padding: section-label + h2 + p + section padding-block 40px × 2 | `lead-form.css` | `display: none` на `.lead-form-header p`; `padding-block: var(--space-6)` для секції; менший margin-bottom на section-label |

@@ -35,11 +35,13 @@
   transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
-.problem-card:hover {
-  border-color: rgba(0, 0, 0, 0.14);
-  border-left-color: var(--color-accent);
-  transform: translateY(-4px);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+@media (hover: hover) and (pointer: fine) {
+  .problem-card:hover {
+    border-color: rgba(0, 0, 0, 0.14);
+    border-left-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.08);
+  }
 }
 
 .problem-card-index {
@@ -83,8 +85,10 @@
   transition: width var(--transition-slow);
 }
 
-.problem-card:hover::after {
-  width: 64px;
+@media (hover: hover) and (pointer: fine) {
+  .problem-card:hover::after {
+    width: 64px;
+  }
 }
 
 /* ── Responsive ──────────────────────────────────────────── */

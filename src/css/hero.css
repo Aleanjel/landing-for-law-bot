@@ -1,7 +1,7 @@
 /* ── Блок 1: Hero ───────────────────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
   background-color: var(--color-hero-bg);
   display: flex;
   flex-direction: column;
@@ -102,7 +102,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  order: -1;
+  /* order: -1 only on desktop where grid is 2-col;
+     on mobile (1-col) phone stays AFTER the text */
 }
 
 .phone-mockup {
@@ -180,7 +181,6 @@
 
   /* Right column: flex column → tilt-wrapper розтягується на всю висоту */
   .hero-visual {
-    order: 0;
     display: flex;
     flex-direction: column;
   }
@@ -210,6 +210,17 @@
   .hero-visual,
   .hero-scroll {
     display: none;
+  }
+
+  /* CTA на повну ширину — більша зона тапу на вузьких екранах */
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 

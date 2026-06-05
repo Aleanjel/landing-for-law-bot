@@ -23,7 +23,7 @@ function initCalculator() {
   function updateFill() {
     const pct = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
     slider.style.background =
-      `linear-gradient(to right, var(--color-accent) ${pct}%, rgba(0,0,0,0.12) ${pct}%)`;
+      `linear-gradient(to right, var(--color-accent) ${pct}%, rgba(0,0,0,0.15) ${pct}%)`;
   }
 
   /* ── Update displayed loss amount ───────────────────────── */
@@ -43,6 +43,31 @@ function initCalculator() {
   }
 
   slider.addEventListener('input', updateDisplay);
+
+  /* Кнопки − і + (знаходяться у .calc-slider-row поряд зі слайдером) */
+  const sliderRow = slider.closest('.calc-slider-row');
+  const minusBtn  = sliderRow?.querySelector('.calc-slider-minus');
+  const plusBtn   = sliderRow?.querySelector('.calc-slider-plus');
+
+  if (minusBtn) {
+    minusBtn.addEventListener('click', () => {
+      const val = parseInt(slider.value, 10);
+      if (val > parseInt(slider.min, 10)) {
+        slider.value = val - 1;
+        updateDisplay();
+      }
+    });
+  }
+
+  if (plusBtn) {
+    plusBtn.addEventListener('click', () => {
+      const val = parseInt(slider.value, 10);
+      if (val < parseInt(slider.max, 10)) {
+        slider.value = val + 1;
+        updateDisplay();
+      }
+    });
+  }
 
   /* Initialise on load */
   updateDisplay();

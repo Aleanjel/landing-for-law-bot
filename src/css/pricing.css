@@ -43,9 +43,11 @@
   transition: border-color var(--transition), background var(--transition);
 }
 
-.audience-item:hover {
-  border-color: rgba(200, 169, 110, 0.40);
-  background: rgba(255, 255, 255, 0.05);
+@media (hover: hover) and (pointer: fine) {
+  .audience-item:hover {
+    border-color: rgba(200, 169, 110, 0.40);
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 /* ── Serial Number ───────────────────────────────────────── */

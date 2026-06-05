@@ -2,7 +2,7 @@
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="Автоматизуйте запис та первинну консультацію в юридичній практиці за допомогою розумного Telegram-бота. Працює 24/7.">
   <title>LexBot — Telegram-бот для юристів та адвокатів</title>
 
@@ -12,18 +12,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <!-- Styles (load order matters) -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/hero.css">
-  <link rel="stylesheet" href="css/problems.css">
-  <link rel="stylesheet" href="css/calculator.css">
-  <link rel="stylesheet" href="css/features.css">
-  <link rel="stylesheet" href="css/objections.css">
-  <link rel="stylesheet" href="css/testimonials.css">
-  <link rel="stylesheet" href="css/pricing.css">
-  <link rel="stylesheet" href="css/lead-form.css">
-  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/variables.css?v=2">
+  <link rel="stylesheet" href="css/base.css?v=2">
+  <link rel="stylesheet" href="css/components.css?v=2">
+  <link rel="stylesheet" href="css/hero.css?v=2">
+  <link rel="stylesheet" href="css/problems.css?v=2">
+  <link rel="stylesheet" href="css/calculator.css?v=9">
+  <link rel="stylesheet" href="css/features.css?v=3">
+  <link rel="stylesheet" href="css/objections.css?v=2">
+  <link rel="stylesheet" href="css/testimonials.css?v=2">
+  <link rel="stylesheet" href="css/pricing.css?v=2">
+  <link rel="stylesheet" href="css/lead-form.css?v=3">
+  <link rel="stylesheet" href="css/animations.css?v=2">
 </head>
 <body>
 
@@ -37,8 +37,32 @@
         <a href="#testimonials">Відгуки</a>
         <a href="#contact">Контакт</a>
       </nav>
+      <button
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-label="Відкрити меню"
+        aria-expanded="false"
+        aria-controls="nav-overlay"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
+
+  <!-- ─── Mobile Nav Overlay ────────────────────────────────── -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true" role="dialog" aria-label="Мобільна навігація">
+    <nav>
+      <ul class="nav-overlay-links">
+        <li><a class="nav-overlay-link" href="#problems">Проблема</a></li>
+        <li><a class="nav-overlay-link" href="#features">Рішення</a></li>
+        <li><a class="nav-overlay-link" href="#testimonials">Відгуки</a></li>
+        <li><a class="nav-overlay-link" href="#contact">Контакт</a></li>
+      </ul>
+    </nav>
+    <a href="#contact" class="btn btn-primary nav-overlay-cta">Отримати демо</a>
+  </div>
 
   <main>
 
@@ -181,18 +205,22 @@
                   Кількість втрачених клієнтів на місяць
                   <span class="calc-value-display" id="calc-value-display">3</span>
                 </label>
-                <input
-                  type="range"
-                  id="calc-clients"
-                  min="1"
-                  max="50"
-                  value="3"
-                  class="calc-slider"
-                  aria-label="Кількість втрачених клієнтів на місяць"
-                  aria-valuemin="1"
-                  aria-valuemax="50"
-                  aria-valuenow="3"
-                >
+                <div class="calc-slider-row">
+                  <span class="calc-slider-minus" aria-hidden="true">−</span>
+                  <input
+                    type="range"
+                    id="calc-clients"
+                    min="1"
+                    max="50"
+                    value="3"
+                    class="calc-slider"
+                    aria-label="Кількість втрачених клієнтів на місяць"
+                    aria-valuemin="1"
+                    aria-valuemax="50"
+                    aria-valuenow="3"
+                  >
+                  <span class="calc-slider-plus" aria-hidden="true">+</span>
+                </div>
                 <div class="calc-slider-markers" aria-hidden="true">
                   <span>1</span>
                   <span>25</span>
@@ -340,38 +368,58 @@
           <div class="features-list" role="list">
 
             <div class="feature-item reveal" role="listitem">
-              <span class="feature-num" aria-label="01">01</span>
-              <h3 class="feature-title">
-                AI-Консультант
-                <span class="feature-tag">Лід-магніт</span>
-              </h3>
-              <p class="feature-text">
-                Бот проводить первинне опитування, відповідає на базові питання за допомогою ШІ та делікатно підводить клієнта до запису на платну консультацію.
-              </p>
+              <div class="feature-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="feature-num" aria-hidden="true">01</span>
+                <h3 class="feature-title">
+                  AI-Консультант
+                  <span class="feature-tag">Лід-магніт</span>
+                </h3>
+                <span class="feature-arrow" aria-hidden="true"></span>
+              </div>
+              <div class="feature-body">
+                <p class="feature-text">
+                  Бот проводить первинне опитування, відповідає на базові питання за допомогою ШІ та делікатно підводить клієнта до запису на платну консультацію.
+                </p>
+              </div>
             </div>
 
             <div class="feature-item reveal reveal-d1" role="listitem">
-              <span class="feature-num" aria-label="02">02</span>
-              <h3 class="feature-title">Автоматичний запис</h3>
-              <p class="feature-text">
-                Клієнт сам обирає вільний слот — заявка одразу падає у вашу Google-таблицю та в особисті повідомлення. Жодного ручного узгодження.
-              </p>
+              <div class="feature-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="feature-num" aria-hidden="true">02</span>
+                <h3 class="feature-title">Автоматичний запис</h3>
+                <span class="feature-arrow" aria-hidden="true"></span>
+              </div>
+              <div class="feature-body">
+                <p class="feature-text">
+                  Клієнт сам обирає вільний слот — заявка одразу падає у вашу Google-таблицю та в особисті повідомлення. Жодного ручного узгодження.
+                </p>
+              </div>
             </div>
 
             <div class="feature-item reveal reveal-d2" role="listitem">
-              <span class="feature-num" aria-label="03">03</span>
-              <h3 class="feature-title">Документи під&nbsp;ключ</h3>
-              <p class="feature-text">
-                Клієнт може замовити розробку документа або купити готовий шаблон — договори, скарги, заяви — прямо в Telegram.
-              </p>
+              <div class="feature-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="feature-num" aria-hidden="true">03</span>
+                <h3 class="feature-title">Документи під&nbsp;ключ</h3>
+                <span class="feature-arrow" aria-hidden="true"></span>
+              </div>
+              <div class="feature-body">
+                <p class="feature-text">
+                  Клієнт може замовити розробку документа або купити готовий шаблон — договори, скарги, заяви — прямо в Telegram.
+                </p>
+              </div>
             </div>
 
             <div class="feature-item reveal reveal-d3" role="listitem">
-              <span class="feature-num" aria-label="04">04</span>
-              <h3 class="feature-title">Цифрова візитка компанії</h3>
-              <p class="feature-text">
-                Ваші послуги, експертиза та прайс — завжди під рукою у клієнта. Перший крок до довіри ще до першого дзвінка.
-              </p>
+              <div class="feature-header" role="button" tabindex="0" aria-expanded="false">
+                <span class="feature-num" aria-hidden="true">04</span>
+                <h3 class="feature-title">Цифрова візитка компанії</h3>
+                <span class="feature-arrow" aria-hidden="true"></span>
+              </div>
+              <div class="feature-body">
+                <p class="feature-text">
+                  Ваші послуги, експертиза та прайс — завжди під рукою у клієнта. Перший крок до довіри ще до першого дзвінка.
+                </p>
+              </div>
             </div>
 
           </div>

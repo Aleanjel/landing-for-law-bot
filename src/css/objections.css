@@ -113,27 +113,30 @@
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
+  .objections .container {
+    align-items: center;
+  }
+
   .versus-grid {
     grid-template-columns: 1fr;
     gap: 0;
+    width: 100%;
   }
 
-  .versus-col {
-    padding: var(--space-8) var(--space-4);
-    align-items: flex-start;
-    text-align: left;
+  /* Всі колонки по центру */
+  .versus-col,
+  .versus-col--without,
+  .versus-col--with {
+    padding: var(--space-6) var(--space-4);
+    align-items: center;
+    text-align: center;
   }
 
-  .versus-col--without {
-    text-align: left;
-    align-items: flex-start;
-  }
-
-  /* Horizontal divider on mobile */
+  /* Горизонтальний роздільник по центру */
   .versus-divider {
     width: 40px;
     height: 1px;
-    margin: 0 var(--space-4);
+    margin: 0 auto;
     background: linear-gradient(
       to right,
       transparent,
@@ -144,11 +147,14 @@
 
   .versus-result {
     font-size: clamp(1.8rem, 8vw, 2.8rem);
+    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
-  .versus-col {
-    padding: var(--space-6) 0;
+  .versus-col,
+  .versus-col--without,
+  .versus-col--with {
+    padding: var(--space-5) 0;
   }
 }

@@ -37,9 +37,11 @@
   transition: border-color var(--transition), box-shadow var(--transition);
 }
 
-.testimonial-item:hover {
-  border-color: rgba(0, 0, 0, 0.18);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+@media (hover: hover) and (pointer: fine) {
+  .testimonial-item:hover {
+    border-color: rgba(0, 0, 0, 0.18);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
 }
 
 /* ── CSS Avatar (grayscale studio portrait placeholder) ──── */

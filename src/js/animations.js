@@ -199,10 +199,118 @@ function initChatTyping() {
   setTimeout(playSequence, 400);
 }
 
+/* ── Mobile Nav Overlay ─────────────────────────────────── */
+
+function initMobileNav() {
+  const toggle  = document.getElementById('nav-toggle');
+  const overlay = document.getElementById('nav-overlay');
+  const header  = document.querySelector('.site-header');
+  if (!toggle || !overlay) return;
+
+  function openNav() {
+    toggle.classList.add('is-open');
+    overlay.classList.add('is-open');
+    toggle.setAttribute('aria-expanded', 'true');
+    overlay.setAttribute('aria-hidden', 'false');
+    header?.classList.add('nav-is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    toggle.classList.remove('is-open');
+    overlay.classList.remove('is-open');
+    toggle.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    header?.classList.remove('nav-is-open');
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', () => {
+    toggle.classList.contains('is-open') ? closeNav() : openNav();
+  });
+
+  /* Close on any nav link click (including CTA) */
+  overlay.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+
+  /* Close on Escape */
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && toggle.classList.contains('is-open')) closeNav();
+  });
+
+  /* Close when resizing back to desktop */
+  const mql = window.matchMedia('(min-width: 769px)');
+  mql.addEventListener('change', (e) => {
+    if (e.matches) closeNav();
+  });
+}
+
+/* ── Features Accordion (mobile only) ──────────────────── */
+
+function initFeatureAccordion() {
+  const mql = window.matchMedia('(max-width: 900px)');
+
+  function openItem(item) {
+    item.classList.add('is-open');
+    item.querySelector('.feature-header')?.setAttribute('aria-expanded', 'true');
+  }
+
+  function closeItem(item) {
+    item.classList.remove('is-open');
+    item.querySelector('.feature-header')?.setAttribute('aria-expanded', 'false');
+  }
+
+  function toggle(item) {
+    const isOpen = item.classList.contains('is-open');
+    /* Закриваємо всі */
+    document.querySelectorAll('.feature-item').forEach(closeItem);
+    /* Відкриваємо натиснутий, якщо він був закритий */
+    if (!isOpen) openItem(item);
+  }
+
+  function setup() {
+    document.querySelectorAll('.feature-item').forEach((item, idx) => {
+      const header = item.querySelector('.feature-header');
+      if (!header) return;
+
+      /* Відкриваємо перший за замовчуванням */
+      if (idx === 0 && mql.matches) openItem(item);
+
+      header.addEventListener('click', () => {
+        if (mql.matches) toggle(item);
+      });
+
+      /* Клавіатурна доступність */
+      header.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && mql.matches) {
+          e.preventDefault();
+          toggle(item);
+        }
+      });
+    });
+  }
+
+  setup();
+
+  /* При ресайзі до десктопу — знімаємо is-open щоб не лишалось зайвого стану */
+  mql.addEventListener('change', (e) => {
+    if (!e.matches) {
+      document.querySelectorAll('.feature-item').forEach(closeItem);
+    } else {
+      /* Повернення на мобільний — відкриваємо перший */
+      const first = document.querySelector('.feature-item');
+      if (first) openItem(first);
+    }
+  });
+}
+
 /* ── Init ───────────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
   initReveal();
   initPhoneTilt();
   initChatTyping();
+  initMobileNav();
+  initFeatureAccordion();
 });
