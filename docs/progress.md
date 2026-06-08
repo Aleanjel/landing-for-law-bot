@@ -1199,3 +1199,32 @@ Response: `{ "output": "відповідь бота" }`
 | Мобільні стилі в `base.css` не застосовувались | Вкладений `@media (hover: hover)` всередині `@media (max-width: 768px)` — старі браузери зупиняють парсинг після нього | `base.css` | Вкладений `@media (hover)` перенесено за межі зовнішнього `@media` |
 | Калькулятор не вміщується на екран | Не врахований довгий `<p>` опис (~4 рядки = ~80px висоти) | `calculator.css` | `display: none` на `.calculator-header p` на мобільному; `padding-block: var(--space-5)` для секції |
 | Форма не вміщується на екран | Не врахований накопичений padding: section-label + h2 + p + section padding-block 40px × 2 | `lead-form.css` | `display: none` на `.lead-form-header p`; `padding-block: var(--space-6)` для секції; менший margin-bottom на section-label |
+
+---
+
+## Сесія: 2026-06-08 (Mobile — Порівняння compact padding)
+
+### Поточна задача
+Прибрати надмірні пусті поля зверху та знизу у блоці "Порівняння" на мобільному.
+
+### Root-cause
+`main > section` у `base.css` (≤768px) задає `min-height: 100dvh` + `justify-content: center`. Контент блоку "Порівняння" компактний (~300px), тому `justify-content: center` розкидає ~200-250px пустого простору рівномірно зверху і знизу.
+
+### Рішення
+У `@media (max-width: 768px)` в `objections.css` додати override для `.objections`:
+- `min-height: auto` — секція підлаштовується під висоту контенту
+- `padding-top: calc(var(--header-height) + var(--space-4))` — 72 + 16 = 88px (clearance від фіксованого header)
+- `padding-bottom: var(--space-4)` — 16px знизу
+
+### Покроковий план
+- [x] **П1.** ПРОТОКОЛ СТАРТУ
+- [x] **П2.** `objections.css` — додати `.objections` override у `@media (max-width: 768px)`
+- [x] **П3.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено
+| Файл | Зміна |
+|---|---|
+| `objections.css` | У `@media (max-width: 768px)`: `.versus-col` padding `var(--space-6)` (32px) → `var(--space-8)` (64px) top/bottom — контент заповнює більше висоти `100dvh`; `min-height: auto` скасовано (блок лишається повноекранним) |
+| `objections.css` | У `@media (max-width: 480px)`: `.versus-col` padding `var(--space-5)` (24px) → `var(--space-7)` (48px) top/bottom |
+
+**Статус: Done**
