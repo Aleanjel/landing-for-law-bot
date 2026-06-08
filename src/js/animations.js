@@ -305,6 +305,21 @@ function initFeatureAccordion() {
   });
 }
 
+/* ── Scroll To Top Button ────────────────────────────────── */
+
+function initScrollTop() {
+  const btn = document.getElementById('scroll-top');
+  if (!btn) return;
+
+  window.addEventListener('scroll', () => {
+    btn.classList.toggle('is-visible', window.scrollY > 300);
+  }, { passive: true });
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 /* ── Init ───────────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -313,4 +328,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initChatTyping();
   initMobileNav();
   initFeatureAccordion();
+  initScrollTop();
 });

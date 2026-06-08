@@ -328,6 +328,71 @@
   margin-inline: auto;
 }
 
+/* ── Scroll To Top Button ────────────────────────────────── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 56px;
+  left: 64px;
+  z-index: 90;
+
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 4px 20px rgba(200, 169, 110, 0.40),
+    0 2px 8px rgba(0, 0, 0, 0.20);
+
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+  transition:
+    opacity    0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform  0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s ease;
+}
+
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top-btn svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--color-hero-bg);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-top-btn:hover {
+    transform: scale(1.08);
+    box-shadow:
+      0 6px 28px rgba(200, 169, 110, 0.55),
+      0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.scroll-top-btn:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 768px) {
+  .scroll-top-btn {
+    display: none;
+  }
+}
+
 /* ── Numbered Badge ──────────────────────────────────────── */
 .num-badge {
   font-family: var(--font-display);

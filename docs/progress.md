@@ -1228,3 +1228,31 @@ Response: `{ "output": "відповідь бота" }`
 | `objections.css` | У `@media (max-width: 480px)`: `.versus-col` padding `var(--space-5)` (24px) → `var(--space-7)` (48px) top/bottom |
 
 **Статус: Done**
+
+---
+
+## Сесія: 2026-06-08 (Desktop — кнопка "scroll to top")
+
+### Поточна задача
+Додати фіксовану кнопку-стрілку "вгору" у правому нижньому куті — лише для desktop.
+
+### Рішення
+- HTML: `<button id="scroll-top">` з SVG-стрілкою, перед `</body>`
+- CSS (`components.css`): `position: fixed; bottom; right`; прихована за замовчуванням, `.is-visible` показує; `@media (max-width: 768px) { display: none }`
+- JS (`animations.js`): scroll-listener → `.is-visible` при `scrollY > 300`; click → `scrollTo top smooth`
+
+### Покроковий план
+- [x] **B1.** ПРОТОКОЛ СТАРТУ
+- [x] **B2.** `index.html` — додати `#scroll-top` кнопку
+- [x] **B3.** `components.css` — стилі кнопки
+- [x] **B4.** `animations.js` — scroll listener + click handler
+- [x] **B5.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено
+| Файл | Зміна |
+|---|---|
+| `index.html` | `<button id="scroll-top">` з SVG-стрілкою перед `<script>` тегами |
+| `components.css` | `.scroll-top-btn`: `position: fixed; bottom: 40px; right: 40px`; прихована (`opacity:0; pointer-events:none`); `.is-visible` → показується; hover fill; `@media (max-width: 768px) { display: none }` |
+| `animations.js` | `initScrollTop()`: `scroll` listener → `.is-visible` при `scrollY > 300`; click → `scrollTo top smooth` |
+
+**Статус: Done**
