@@ -1,0 +1,407 @@
+/* ── Buttons ─────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 14px 36px;
+  min-height: 48px;
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wide);
+  text-transform: uppercase;
+  border-radius: 0;
+  transition: var(--transition);
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  line-height: 1;
+  touch-action: manipulation;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+/* Full-width block variant */
+.btn-block {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Gold outline — primary CTA on dark backgrounds */
+.btn-primary {
+  background: transparent;
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--color-accent);
+  color: var(--color-hero-bg);
+}
+
+/* Shimmer sweep on hover */
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 70%
+  );
+  transition: left 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.btn-primary:hover:not(:disabled)::after {
+  left: 160%;
+}
+
+/* Solid gold — secondary CTA */
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-hero-bg);
+  border-color: var(--color-accent);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-accent:hover:not(:disabled) {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+.btn-accent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -110%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 70%
+  );
+  transition: left 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.btn-accent:hover:not(:disabled)::after {
+  left: 160%;
+}
+
+/* Dark outline — on light backgrounds */
+.btn-dark {
+  background: transparent;
+  color: var(--color-dark);
+  border-color: var(--color-dark);
+}
+
+.btn-dark:hover:not(:disabled) {
+  background: var(--color-dark);
+  color: var(--color-white);
+}
+
+/* ── Phone Mockup ────────────────────────────────────────── */
+.phone-mockup {
+  position: relative;
+  width: 260px;
+  max-width: 100%;
+  height: 520px;
+  aspect-ratio: 1 / 2;
+  margin-inline: auto;
+
+  background: #0A0A0A;
+  border-radius: 44px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04),
+    var(--shadow-hero),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Side buttons */
+.phone-mockup::before {
+  content: '';
+  position: absolute;
+  right: -3px;
+  top: 120px;
+  width: 3px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 80px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Dynamic island */
+.phone-notch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 30px;
+  background: #0A0A0A;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+/* Screen area */
+.phone-screen {
+  position: absolute;
+  inset: 0;
+  background: #1A2332;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Telegram header bar */
+.phone-tg-header {
+  padding: 54px 16px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.phone-tg-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent) 0%, #8B6B3D 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: white;
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  flex-shrink: 0;
+}
+
+.phone-tg-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.phone-tg-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.01em;
+}
+
+.phone-tg-status {
+  font-size: 10px;
+  color: #4FC26B;
+}
+
+/* Chat messages */
+.phone-chat {
+  flex: 1;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.phone-msg {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 14px;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.phone-msg--bot {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.85);
+  align-self: flex-start;
+  border-radius: 4px 14px 14px 14px;
+}
+
+.phone-msg--user {
+  background: #2B5278;
+  color: rgba(255, 255, 255, 0.90);
+  align-self: flex-end;
+  border-radius: 14px 14px 4px 14px;
+}
+
+.phone-msg--bot.typing {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  padding: 10px 14px;
+}
+
+.typing-dot {
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  animation: typing-pulse 1.2s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-pulse {
+  0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+  30%            { opacity: 1;   transform: translateY(-3px); }
+}
+
+/* Phone input bar */
+.phone-input-bar {
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.phone-input-field {
+  flex: 1;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  padding-inline: 12px;
+}
+
+.phone-input-field span {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.phone-send-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #2B5278;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.phone-send-btn svg {
+  width: 14px;
+  height: 14px;
+  fill: rgba(255, 255, 255, 0.7);
+}
+
+/* ── Section Divider ─────────────────────────────────────── */
+.section-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--color-accent);
+  margin-block: var(--space-5);
+}
+
+.section-divider--center {
+  margin-inline: auto;
+}
+
+/* ── Scroll To Top Button ────────────────────────────────── */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 56px;
+  left: 64px;
+  z-index: 90;
+
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow:
+    0 4px 20px rgba(200, 169, 110, 0.40),
+    0 2px 8px rgba(0, 0, 0, 0.20);
+
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+  transition:
+    opacity    0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform  0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.2s ease;
+}
+
+.scroll-top-btn.is-visible {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.scroll-top-btn svg {
+  width: 36px;
+  height: 36px;
+  stroke: var(--color-hero-bg);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-top-btn:hover {
+    transform: scale(1.08);
+    box-shadow:
+      0 6px 28px rgba(200, 169, 110, 0.55),
+      0 2px 10px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.scroll-top-btn:active {
+  transform: scale(0.96);
+}
+
+@media (max-width: 768px) {
+  .scroll-top-btn {
+    display: none;
+  }
+}
+
+/* ── Numbered Badge ──────────────────────────────────────── */
+.num-badge {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: var(--fw-light);
+  line-height: 1;
+  color: currentColor;
+  opacity: 0.08;
+  letter-spacing: var(--ls-tight);
+  display: block;
+  user-select: none;
+}
