@@ -1,0 +1,94 @@
+/* ─────────────────────────────────────────────────────────
+   transitions.css — Плавні переходи між секціями (mobile)
+
+   ПРИНЦИП:
+   · background-image (не shorthand) — шарується поверх
+     background-color, не замінює його
+   · Тільки bottom-fade: кожна секція "підводить" до кольору
+     наступної; top-fade не потрібен — попередня секція вже
+     виконала свою частину
+   · Висота переходу: фіксовані 80–100px (не %, бо % дає
+     різний px на різних екранах і може залізти в контент)
+   · Opacity 0 → 0.88: не доводимо до 1 щоб перехід лишався
+     м'яким, а не різким на останньому пікселі
+   ───────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+  /* ── Hero (#0D1B2A) → Problems (#F8F7F4) ──────────────── */
+  /* Hero::after вже існує — перевизначаємо його колір */
+  .hero::after {
+    height: 100px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(248, 247, 244, 0.88)
+    );
+  }
+
+  /* ── Problems (#F8F7F4) → Calculator (#FFF) ───────────── */
+  /* Перехід светлий→білий, дуже тонкий */
+  .problems {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(100% - 80px),
+      rgba(255, 255, 255, 0.88) 100%
+    );
+  }
+
+  /* ── Calculator (#FFF) → Features (#111) ─────────────── */
+  /* Найконтрастніший перехід — трохи довший */
+  .calculator {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(100% - 100px),
+      rgba(17, 17, 17, 0.88) 100%
+    );
+  }
+
+  /* ── Features (#111) → Objections (#FFF) ─────────────── */
+  .features {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(100% - 100px),
+      rgba(255, 255, 255, 0.88) 100%
+    ) !important; /* !important тільки щоб перебити тут існуючий !important */
+  }
+
+  /* ── Objections (#FFF) → Testimonials (#F8F7F4) ──────── */
+  .objections {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(100% - 80px),
+      rgba(248, 247, 244, 0.88) 100%
+    );
+  }
+
+  /* ── Testimonials (#F8F7F4) → Audience (#111) ─────────── */
+  .testimonials {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(100% - 100px),
+      rgba(17, 17, 17, 0.88) 100%
+    );
+  }
+
+  /* ── Audience (#111) → Lead Form (#0D1B2A) ────────────── */
+  /* Темний→темний, дуже тонко */
+  .audience {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent calc(100% - 80px),
+      rgba(13, 27, 42, 0.88) 100%
+    );
+  }
+
+  /* Lead Form — фінальна секція, нічого після неї */
+
+}
