@@ -1256,3 +1256,27 @@ Response: `{ "output": "відповідь бота" }`
 | `animations.js` | `initScrollTop()`: `scroll` listener → `.is-visible` при `scrollY > 300`; click → `scrollTo top smooth` |
 
 **Статус: Done**
+
+---
+
+## Сесія: 2026-06-11 (Desktop UI — Chat widget менший + стрілка вгору переміщена)
+
+### Поточна задача
+Зменшити chat-trigger; перемістити кнопку "вгору" зліва направо над чатом; привести обидві до однакового розміру; змінити колір стрілки щоб відрізнялась від gold-чату.
+
+### Покроковий план
+- [x] **D1.** ПРОТОКОЛ СТАРТУ
+- [x] **D2.** `widget.css` — `.chat-trigger` 88px → 56px; icon 40px → 26px; pulse shadow менший; mobile 62px → 48px
+- [x] **D3.** `components.css` — `.scroll-top-btn`: left:64px → right:64px; bottom:56px → bottom:122px (над чатом); 88px → 56px; gold → dark (`var(--color-dark)` + border rgba(255,255,255,0.10)); SVG stroke: accent gold 22px; hover: #1e1e1e
+- [x] **D4.** ПРОТОКОЛ ЗАВЕРШЕННЯ
+
+### Що зроблено
+| Файл | Зміна |
+|---|---|
+| `widget.css` | `.chat-trigger`: `88×88` → `56×56`; icon `40→26px`; pulse radius `14→10px`; mobile `62→48px` |
+| `components.css` | `.scroll-top-btn`: `left:64px` → `right:64px`; `bottom:56px` → `bottom:122px`; `88×88` → `56×56`; bg `var(--color-accent)` → `var(--color-dark)`; border `rgba(255,255,255,0.10)`; SVG stroke `accent` (gold), `22px`; hover `#1e1e1e` |
+
+### Логіка позиціонування
+`bottom: 122px` = `56px` (bottom chat-widget) + `56px` (висота trigger) + `10px` (gap)
+
+**Статус: Done**
